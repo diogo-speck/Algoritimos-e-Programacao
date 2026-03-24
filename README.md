@@ -1,1 +1,0 @@
-# Algoritmos-e-Programa-o

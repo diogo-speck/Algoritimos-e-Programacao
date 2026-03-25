@@ -19,8 +19,26 @@ while (true){
     }
     else{
         System.out.println("Ok, sem problemas");
-        sc.close();
+        System.out.println("Agora vou montar um perfil no Tinder para você então, para começar você precisa ter pelo menos 18 anos, para facilitar qual a sua idade? ");
+        int idade1 = sc.nextInt();
+
+        System.out.println("Confirma sua idade: ");
+        idade1 = sc.nextInt();
+
+        System.out.println("Agora vou precisar que você informe seu estado civil (solteiro, casado, separado, divorciado, viúvo): ");
+        String estadoCivil = sc.next();
+
+        if (idade1>=18 && estadoCivil.equalsIgnoreCase("solteiro")){
+            System.out.println("Tá liberado a sapecagem!");
+        }
+        else{
+            System.out.println("Infelizmente você não cumpriu os pré-requisitos (mas isso não impede você de mentir)");
+            System.exit(0);
+        }
+    }
+        
+
+    sc.close();
     }
 }    
-}
 }

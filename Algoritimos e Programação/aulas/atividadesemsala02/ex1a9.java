@@ -71,7 +71,7 @@ public class ex1a9 {
     // ===== OPÇÃO 1 =====
     public static void calcularMedia(Scanner sc) {
 
-        double nota1, nota2, nota3, media;
+        double nota1, nota2, nota3, nota4, media;
 
         System.out.println("\nDigite a primeira nota: ");
         nota1 = sc.nextDouble();
@@ -91,11 +91,29 @@ public class ex1a9 {
             System.out.println("Não tem como você ter tirado uma nota negativa");
             return;
         }
+        System.out.println("Digite a quarta nota: ");
+        nota4 = sc.nextDouble();
+        if (nota4<0){
+            System.out.println("Não tem como você ter tirado uma nota negativa");
+            return;
+        }
         sc.nextLine();
 
-        media = (nota1 + nota2 + nota3) / 3;
+        media = (nota1 + nota2 + nota3 +nota4) / 4;
 
         System.out.println("Média: " + media);
+        if (media>=10){
+            System.out.println("Aprovado com Louvor");
+        }
+        if (media>=8){
+            System.out.println("Aprovado com Merito");
+        }
+        if (media>=6){
+            System.out.println("Aprovado com Destaque");
+        }
+        else{
+            System.out.println("Reprovado, média menor que 6");
+        }
     }
 
     // ===== OPÇÃO 2 =====
@@ -162,7 +180,6 @@ public class ex1a9 {
         }
         else{
         System.out.println("\nDigite um valor positivo maior que zero");
-        return;
         }
     }
 
@@ -222,7 +239,6 @@ public class ex1a9 {
         valorbase = sc.nextDouble();
         if (valorbase<0){
             System.out.println("Eu suponho que não tenha como ganhar um salário negativo, por favor insira seu salário positivamente (não se preocupe, não guardo informações confidenciais)");
-            return;
         }
         else{
         gratificacao = valorbase * 0.05;

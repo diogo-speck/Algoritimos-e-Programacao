@@ -179,7 +179,36 @@ public class ex1ao11 {
 
     // ===== OPÇÃO 6 =====
     public static void vogalConsoante(Scanner sc) {
+        System.out.println("Digite um caractere: ");
+        String caractere= sc.next();
+        if (caractere.length() != 1) {
+        System.out.println("Digite apenas UM caractere!");
+        return;
+        }
 
+        char c = Character.toLowerCase(caractere.charAt(0));
+
+        // COM IF E ELSE
+        /* 
+        else if ("aeiou".indexOf(c) != -1) {
+            System.out.println(caractere + " é uma vogal");
+        } 
+        */
+        switch (c) {
+        case 65, 97, 69, 101, 73, 105, 79, 111, 85, 117 ->
+        //'a', 'e', 'i', 'o', 'u':
+            System.out.println(c + " é uma vogal");
+        //break;
+        default -> {
+            if (Character.isDigit(c)) {
+                System.out.println(caractere + " é um número");
+            } else if (Character.isLetter(c)) {
+                System.out.println(caractere + " é uma consoante");
+            } else {
+                System.out.println(caractere + " é um símbolo");
+            }
+        }
+    }
     }
     // ===== OPÇÃO 7 =====
     public static void imc(Scanner sc) {
@@ -187,6 +216,10 @@ public class ex1ao11 {
         double pesoKG = sc.nextDouble();
         System.out.println("Agora insira sua altura (em metros): ");
         double alturaM = sc.nextDouble();
+        if (alturaM==0){
+            System.out.println("É impossível você ter 0 de altura");
+            return;
+        }
         double imc = pesoKG/Math.pow(alturaM,2);
 
         System.out.printf("Seu IMC é aproximadamente %.2f kg/m²",(imc));
@@ -219,12 +252,85 @@ public class ex1ao11 {
 
     // ===== OPÇÃO 8 =====
     public static void mesAno(Scanner sc) {
+        System.out.println("Insira um número correspondente a um mês do ano para saber a estação no hemisfério Sul (1-12): ");
+        String mes = sc.next();
+
+        /*
+        int mes = Integer.parseInt(sc.next());
+        switch (mes) {
+            case 1, 2, 12 -> System.out.println("Verão");
+        */
+
+        switch (mes) {
+            case "12", "1", "2" -> System.out.println(mes+"º mês é Verão");
+            case "3","4","5" -> System.out.println(mes+"º mês é Outono");
+            case "6","7","8" -> System.out.println(mes+"º mês é Inverno");
+            case "9","10","11" -> System.out.println(mes+"º mês é Primavera");
+            default -> System.out.println("Mês inválido");
+        }
+
 
     }
 
     // ===== OPÇÃO 9 =====
     public static void calculadora(Scanner sc) {
+        System.out.println("\n===== CALCULADORA =====");
+        System.out.println("1 - Soma");
+        System.out.println("2 - Subtração");
+        System.out.println("3 - Multiplicação");
+        System.out.println("4 - Divisão");
+        System.out.println("S - Sair");
+        System.out.println("Escolha uma opção: ");
+        String opcao = sc.next();
 
+        char d = Character.toUpperCase(opcao.charAt(0));
+
+        switch(d){
+            case '1':
+                System.out.println("Insira o 1º valor para a Soma: ");
+                float valor1 = sc.nextFloat();
+                System.out.println("Insira o 2º valor para a Soma: ");
+                float valor2 = sc.nextFloat();
+                float operacao = valor1+valor2;
+                System.out.printf("\nO resultado da sua Soma é "+operacao);
+                return;
+            case '2':
+                System.out.println("Insira o 1º valor para a Subtração: ");
+                valor1 = sc.nextFloat();
+                System.out.println("Insira o 2º valor para a Subtração: ");
+                valor2 = sc.nextFloat();
+                operacao = valor1-valor2;
+                System.out.printf("\nO resultado da sua Subtração é "+operacao);
+                return;
+            case '3':
+                System.out.println("Insira o 1º valor para a Multiplicação: ");
+                valor1 = sc.nextFloat();
+                System.out.println("Insira o 2º valor para a Multiplicação: ");
+                valor2 = sc.nextFloat();
+                operacao = valor1*valor2;
+                System.out.printf("\nO resultado da sua Multiplicação é "+operacao);
+                return;
+            case '4':
+                System.out.println("Insira o 1º valor para a Divisão: ");
+                valor1 = sc.nextFloat();
+                System.out.println("Insira o 2º valor para a Divisão: ");
+                valor2 = sc.nextFloat();
+                if (valor2==0){
+                    System.out.println("\nNão é possível dividir por zero");
+                    return;
+                }
+                else{
+                operacao = valor1/valor2;
+                System.out.printf("\nO resultado da sua Divisão é "+operacao);
+                return;
+                }
+            case 'S','s':
+                System.out.printf("\nPrograma encerrado");
+                sc.close();
+
+            default:
+                System.out.println("\nOpção inválida");
+        }
+
+        }
     }
-
-}

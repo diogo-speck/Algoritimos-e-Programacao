@@ -1,8 +1,8 @@
-package aulas.javacasa;
+package aulas.aula03;
 
 import java.util.Scanner;
 
-public class Hello{
+public class hello{
 public static void main (String[]args){
 Scanner sc = new Scanner(System.in); 
 while (true){

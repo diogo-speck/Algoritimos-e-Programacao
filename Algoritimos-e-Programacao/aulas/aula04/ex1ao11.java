@@ -1,6 +1,8 @@
+package aulas.aula04;
+
 import java.util.Scanner;
 
-public class ex1a11 {
+public class ex1ao11 {
     public static void main(String[] args) {
 
         try (Scanner sc = new Scanner(System.in)) {
@@ -61,19 +63,18 @@ public class ex1a11 {
         public static void perfilAdulto(Scanner sc) {
 
         System.out.println("Agora vou montar um perfil no Tinder para você então, para começar você precisa ter pelo menos 18 anos, para facilitar qual a sua idade? ");
-        int idade1 = sc.nextInt();
 
         System.out.println("Confirma sua idade: ");
-        idade1 = sc.nextInt();
+        int idade1 = sc.nextInt();
 
         System.out.println("Agora vou precisar que você informe seu estado civil (solteiro, casado, separado, divorciado, viúvo): ");
         String estadoCivil = sc.next();
 
         if (idade1>=18 && estadoCivil.equalsIgnoreCase("solteiro")){
-            System.out.println("Tá liberado a sapecagem!");
+            System.out.printf("\nTá liberado a sapecagem!");
         }
         else{
-            System.out.println("Infelizmente você não cumpriu os pré-requisitos (mas isso não impede você de mentir)");
+            System.out.printf("\nInfelizmente você não cumpriu os pré-requisitos (mas isso não impede você de mentir)");
             System.exit(0);
         }
         }

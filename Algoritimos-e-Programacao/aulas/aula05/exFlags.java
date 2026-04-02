@@ -4,8 +4,9 @@ import java.util.Scanner;
 
 public class exFlags {
     public static void main(String[] args) {
-
+    
         try (Scanner sc = new Scanner(System.in)) {
+            while (true) { 
             System.out.println("\n===== MENU =====");
             System.out.println("1 - Avaliação de Cálculo e Operadores Lógicos");
             System.out.println("2 - Mês do Ano e sua estação correspondente");
@@ -21,32 +22,35 @@ public class exFlags {
 
         switch(d){
             case '1' -> {
+                int contador1 = 0;
                 boolean resultado1 = false;
-                boolean resultado2 = false;
                 System.out.printf("\nAvaliação de Cálculo");
                 System.out.println("Quanto é 5+2*3? ");
                 int resposta1 = sc.nextInt();
                 System.out.println("Quanto é 4+10/2*3? ");
                 int resposta2 = sc.nextInt();
                 System.out.println("Suas respostas foram: "+resposta1+" e "+resposta2);
-                if (resposta1 == 11){
+                if (resposta1 == 11 && resposta2 == 19){
                     resultado1 = true;
-                    
-                }
-                if (resposta2 == 19){
-                    resultado2 = true;
-                }
-                
-                if (resultado1 == true && resultado2 == true){
-                    System.out.printf("\nVocê acertou as duas questões, parabéns, você foi aprovado em Cálculo");
+                    contador1 = +2;
                 }
                 else{
-                    System.out.printf("\nVocê não acertou as duas questões de cálculo, infelizmente, você NÃO foi aprovado em Cálculo");
+                    resultado1 = false;
+                    if (resposta1 == 11 && resposta2 != 19 || resposta1 != 11 && resposta2 == 19){
+                        contador1 = +1;
+                    }
                 }
                 
+                if (resultado1 == true){
+                    System.out.println("Você acertou as duas questões, parabéns, você foi aprovado em Cálculo");
+                }
+                else{
+                    System.out.println("Você não acertou as duas questões de cálculo, seus acertos foram "+contador1+", infelizmente, você NÃO foi aprovado em Cálculo");
+                }
+                
+                int contador2 = 0;
                 System.out.printf("\nAgora a avaliação de Operadores Lógicos");
-                boolean logica1 = true;
-                boolean logica2 = true;
+                boolean logica1 = false;
                 System.out.println("(10 > 5) && (3 < 1 || 8 > 2) é verdadeiro ou falso? (v/f)");
                 String resposta3 = sc.next();
                 System.out.println("true || false && !(true) é verdadeiro ou falso? (v/f)");
@@ -76,40 +80,50 @@ public class exFlags {
                 default:
                 }
                 */
-                if (resposta4 == "v"){
-                    logica2 = true;
+                if (resposta3.equals("v") && resposta4.equals("f")){
+                    logica1 = true;
+                    contador2 = +2;
                 }
                 else{
-                    logica2 = false;
-                }
-                
-                if (resposta4 == "v"){
-                    logica2 = true;
-                }
-                else{
-                    logica2 = false;
+                    logica1 = false;
+                    if((resposta3.equals("v") && resposta4.equals("v"))||(resposta3.equals("f") && resposta4.equals("f"))){
+                        contador2 = +1;
+                    }
+                    else{
+                        
+                    }
+                    
                 }
                 
                 System.out.println("Suas respostas foram: "+resposta3+" e "+resposta4);
-                if (logica1 == true && logica2 == true){
+                if (logica1 == true){
                     System.out.println("Você acertou as duas questões, parabéns, você foi aprovado em Operadores Lógicos");
                 }
                 else{
-                    System.out.println("Você não acertou as duas questões de cálculo, infelizmente, você NÃO foi aprovado em Operadores Lógicos");
+                    System.out.println("Você não acertou as duas questões de cálculo, seus acertos foram "+contador2+", infelizmente, você NÃO foi aprovado em Operadores Lógicos");
                 }
-
+                System.out.println("Seu resultado final foi de "+(contador1+contador2)*25+"% de acertos totais, foram "+(contador1+contador2)+"/4 acertos");
+                
                 }
-
+                
 
                 case '2' -> {
                     System.out.println("Insira um número correspondente a um mês do ano para saber a estação no hemisfério Sul (1-12): ");
                     String mes = sc.next();
 
                     switch (mes) {
-                        case "12", "1", "2" -> System.out.println(mes+"º mês é Verão");
-                        case "3","4","5" -> System.out.println(mes+"º mês é Outono");
-                        case "6","7","8" -> System.out.println(mes+"º mês é Inverno");
-                        case "9","10","11" -> System.out.println(mes+"º mês é Primavera");
+                        case "12" -> System.out.println(mes+"º mês é Dezembro e é Verão");
+                        case "1" -> System.out.println(mes+"º mês é Janeiro e é Verão");
+                        case "2" -> System.out.println(mes+"º mês é Fevereiro e é Verão");
+                        case "3" -> System.out.println(mes+"º mês é Março e é Outono");
+                        case "4" -> System.out.println(mes+"º mês é Abril e é Outono");
+                        case "5" -> System.out.println(mes+"º mês é Maio e é Outono");
+                        case "6" -> System.out.println(mes+"º mês é Junho e é Inverno");
+                        case "7" -> System.out.println(mes+"º mês é Julho e é Inverno");
+                        case "8" -> System.out.println(mes+"º mês é Agosto e é Inverno");
+                        case "9" -> System.out.println(mes+"º mês é Setembro e é Primavera");
+                        case "10" -> System.out.println(mes+"º mês é Outubro e é Primavera");
+                        case "11" -> System.out.println(mes+"º mês é Novembro e é Primavera");
                         default -> System.out.println("Mês inválido");
                     }
                     
@@ -189,7 +203,7 @@ public class exFlags {
                     vip = vip.toLowerCase();
                     boolean confirma = false;
                     double desconto = 0;
-                    if (vip == "v"){
+                    if (vip.equals("s")){
                         confirma = true;
                     }
                     else{
@@ -205,13 +219,14 @@ public class exFlags {
                     if (confirma && valor>200){
                         desconto = valor*0.1;
                     }
-                    if (confirma || valor>200){
+                    else if (confirma || valor>200){
                         desconto = valor*0.05;
                     }
                     else{
 
+
                     }
-                    System.out.println("Seu valor inicial da compra de "+valor+" teve desconto de "+(desconto/valor)*100+"% e foi para o valor final de "+(valor-desconto));
+                    System.out.println("Seu valor inicial da compra de "+valor+" teve desconto de "+(desconto/valor)*100+"% ("+desconto+") e foi para o valor final de "+Math.rint(100*(valor-desconto))/100);
 
                 }
 
@@ -219,13 +234,18 @@ public class exFlags {
                 case 'S' -> {
                     System.out.printf("\nPrograma encerrado");
                     sc.close();
+                    return;
                 }
 
 
                 default -> {
                     System.out.println("\nOpção inválida");
                 }
+                
         }
+        
     }
+    
+}
 }
 }

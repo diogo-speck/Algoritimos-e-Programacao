@@ -2,6 +2,8 @@ package aulas.aula05;
 
 import java.util.Scanner;
 
+// teste
+
 public class exFlags {
     public static void main(String[] args) {
     
@@ -21,7 +23,7 @@ public class exFlags {
             char d = Character.toUpperCase(opcao.charAt(0));
 
         switch(d){
-            case '1' -> {
+            case '1': {
                 int contador1 = 0;
                 boolean resultado1 = false;
                 System.out.printf("\nAvaliação de Cálculo");

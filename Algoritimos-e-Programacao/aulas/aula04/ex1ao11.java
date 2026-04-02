@@ -194,12 +194,16 @@ public class ex1ao11 {
             System.out.println(caractere + " é uma vogal");
         } 
         */
+        
         switch (c) {
-        case 65, 97, 69, 101, 73, 105, 79, 111, 85, 117 ->
-        //'a', 'e', 'i', 'o', 'u':
-            System.out.println(c + " é uma vogal");
-        //break;
-        default -> {
+            
+        case 'a' : System.out.println(c + " é uma vogal");
+        case 'e' : System.out.println(c + " é uma vogal");
+        case 'i' : System.out.println(c + " é uma vogal");
+        case 'o' : System.out.println(c + " é uma vogal");
+        case 'u' : System.out.println(c + " é uma vogal");
+        
+        default : {
             if (Character.isDigit(c)) {
                 System.out.println(caractere + " é um número");
             } else if (Character.isLetter(c)) {
@@ -258,15 +262,15 @@ public class ex1ao11 {
         /*
         int mes = Integer.parseInt(sc.next());
         switch (mes) {
-            case 1, 2, 12 -> System.out.println("Verão");
+            case 1, 2, 12 : System.out.println("Verão");
         */
 
         switch (mes) {
-            case "12", "1", "2" -> System.out.println(mes+"º mês é Verão");
-            case "3","4","5" -> System.out.println(mes+"º mês é Outono");
-            case "6","7","8" -> System.out.println(mes+"º mês é Inverno");
-            case "9","10","11" -> System.out.println(mes+"º mês é Primavera");
-            default -> System.out.println("Mês inválido");
+            case "12", "1", "2" : System.out.println(mes+"º mês é Verão");
+            case "3","4","5" : System.out.println(mes+"º mês é Outono");
+            case "6","7","8" : System.out.println(mes+"º mês é Inverno");
+            case "9","10","11" : System.out.println(mes+"º mês é Primavera");
+            default : System.out.println("Mês inválido");
         }
 
 

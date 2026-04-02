@@ -2,7 +2,7 @@ package aulas.aula01;
 
 import java.util.Scanner;
 
-public class Algoritimos1 {
+public class algoritimos1 {
 public static void main(String[] args) {
 
 try (Scanner sc = new Scanner(System.in)) {

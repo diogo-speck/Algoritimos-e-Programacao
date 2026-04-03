@@ -266,10 +266,18 @@ public class ex1ao11 {
         */
 
         switch (mes) {
-            case "12", "1", "2" : System.out.println(mes+"º mês é Verão");
-            case "3","4","5" : System.out.println(mes+"º mês é Outono");
-            case "6","7","8" : System.out.println(mes+"º mês é Inverno");
-            case "9","10","11" : System.out.println(mes+"º mês é Primavera");
+            case "12" : System.out.println(mes+"º mês é Dezembro e é Verão");
+            case "1" : System.out.println(mes+"º mês é Janeiro e é Verão");
+            case "2" : System.out.println(mes+"º mês é Fevereiro e é Verão");
+            case "3" : System.out.println(mes+"º mês é Março e é Outono");
+            case "4" : System.out.println(mes+"º mês é Abril e é Outono");
+            case "5" : System.out.println(mes+"º mês é Maio e é Outono");
+            case "6" : System.out.println(mes+"º mês é Junho e é Inverno");
+            case "7" : System.out.println(mes+"º mês é Julho e é Inverno");
+            case "8" : System.out.println(mes+"º mês é Agosto e é Inverno");
+            case "9" : System.out.println(mes+"º mês é Setembro e é Primavera");
+            case "10" : System.out.println(mes+"º mês é Outubro e é Primavera");
+            case "11" : System.out.println(mes+"º mês é Novembro e é Primavera");
             default : System.out.println("Mês inválido");
         }
 
@@ -328,7 +336,7 @@ public class ex1ao11 {
                 System.out.printf("\nO resultado da sua Divisão é "+operacao);
                 return;
                 }
-            case 'S','s':
+            case 'S':
                 System.out.printf("\nPrograma encerrado");
                 sc.close();
 

@@ -3,32 +3,32 @@ package aulas.trabalhosEmGrupo;
 import java.util.Scanner;
 import java.util.Random;
 
-public class App {
+public class pedrapapeltesoura {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String opcao;
 
-        do {
-            System.out.println();
-            System.out.println("Deseja jogar Pedra, Papel e Tesoura? (s/n) ");
+            System.out.println("\nDeseja jogar Pedra, Papel e Tesoura? (s/n) ");
             opcao = sc.next();
+        do {
 
             if (opcao.equalsIgnoreCase("s")) {
                 System.out.printf("\n======MENU======");
                 System.out.printf("\n1 - Pedra");
                 System.out.printf("\n2 - Papel");
                 System.out.printf("\n3 - Tesoura");
-                System.out.printf("\n0 - Voltar ao menu");
+                System.out.printf("\n0 - Sair");
                 System.out.printf("\nEscolha: ");
 
-                while (!sc.hasNextInt()) {
+                if (!sc.hasNextInt()) {
                     System.out.println("Por favor, digite uma escolha válida");
-                    sc.next();
+                    sc.next(); // descarta a entrada inválida
+                    continue;  // volta para o início do loop
                 }
                 int escolhaUsuario = sc.nextInt();
 
                 if (escolhaUsuario == 0) {
-                    continue; // volta ao menu principal
+                    break; // Sair
                 }
 
                 Random gerador = new Random();
@@ -37,7 +37,7 @@ public class App {
                 switch (escolhaUsuario) {
                     case 1: // Pedra
                         if (escolhaComputador == 1){ 
-                            System.out.println("Empate");
+                            System.out.println("EMPATE");
                             System.out.println("Computador escolheu:\n"+
                                                 "    _____\n" +
                                                 "---' ____)\n" +
@@ -55,7 +55,7 @@ public class App {
                                                 );
                         }
                         else if (escolhaComputador == 2){ 
-                            System.out.println("Você perdeu");
+                            System.out.println("Você PERDEU");
                             System.out.println("Computador escolheu:\n"+
                                                 "    _______ \n" +
                                                 "---'   ____)____ \n" +
@@ -73,7 +73,7 @@ public class App {
                                                 );
                         }
                         else{ 
-                            System.out.println("Você venceu");
+                            System.out.println("Você VENCEU");
                             System.out.println("Computador escolheu:\n"+
                                                 "    ______ \n" +
                                                 "---'  ____)_____ \n" +
@@ -93,7 +93,7 @@ public class App {
                             break;
                     case 2: // Papel
                         if (escolhaComputador == 1){ 
-                            System.out.println("Você venceu");
+                            System.out.println("Você VENCEU");
                             System.out.println("Computador escolheu:\n"+
                                                 "    _____\n" +
                                                 "---' ____)\n" +
@@ -111,7 +111,7 @@ public class App {
                                                 );
                         }
                         else if (escolhaComputador == 2){ 
-                            System.out.println("Empate");
+                            System.out.println("EMPATE");
                             System.out.println("Computador escolheu:\n"+
                                                 "    _______ \n" +
                                                 "---'   ____)____ \n" +
@@ -129,7 +129,7 @@ public class App {
                                                 );
                         }
                         else{ 
-                            System.out.println("Você perdeu");
+                            System.out.println("Você PERDEU");
                             System.out.println("Computador escolheu:\n"+
                                                 "    ______ \n" +
                                                 "---'  ____)_____ \n" +
@@ -149,7 +149,7 @@ public class App {
                             break;
                     case 3: // Tesoura
                         if (escolhaComputador == 1){ 
-                            System.out.println("Você perdeu");
+                            System.out.println("Você PERDEU");
                             System.out.println("Computador escolheu:\n"+
                                                 "    _____\n" +
                                                 "---' ____)\n" +
@@ -167,7 +167,7 @@ public class App {
                                                 );
                         }
                         else if (escolhaComputador == 2){ 
-                            System.out.println("Você venceu");
+                            System.out.println("Você VENCEU");
                             System.out.println("Computador escolheu:\n"+
                                                 "    _______ \n" +
                                                 "---'   ____)____ \n" +
@@ -185,7 +185,7 @@ public class App {
                                                 );
                         }
                         else{ 
-                            System.out.println("Empate");
+                            System.out.println("EMPATE");
                             System.out.println("Computador escolheu:\n"+
                                                 "    ______ \n" +
                                                 "---'  ____)_____ \n" +
@@ -204,7 +204,8 @@ public class App {
                         }
                             break;
                     default:
-                        System.out.println("Opção inválida! Escolha 1, 2, 3 ou 0");
+                        System.out.println("Escolha inválida! Escolha 1, 2, 3 ou 0");
+                        break;
                 }
             } else if (opcao.equalsIgnoreCase("n")) {
                 System.out.println("Ok, programa encerrado");

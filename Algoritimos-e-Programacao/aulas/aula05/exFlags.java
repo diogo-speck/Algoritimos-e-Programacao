@@ -109,48 +109,48 @@ public class exFlags {
                 }
                 
 
-                case '2' -> {
+                case '2' : {
                     System.out.println("Insira um número correspondente a um mês do ano para saber a estação no hemisfério Sul (1-12): ");
                     String mes = sc.next();
 
                     switch (mes) {
-                        case "12" -> System.out.println(mes+"º mês é Dezembro e é Verão");
-                        case "1" -> System.out.println(mes+"º mês é Janeiro e é Verão");
-                        case "2" -> System.out.println(mes+"º mês é Fevereiro e é Verão");
-                        case "3" -> System.out.println(mes+"º mês é Março e é Outono");
-                        case "4" -> System.out.println(mes+"º mês é Abril e é Outono");
-                        case "5" -> System.out.println(mes+"º mês é Maio e é Outono");
-                        case "6" -> System.out.println(mes+"º mês é Junho e é Inverno");
-                        case "7" -> System.out.println(mes+"º mês é Julho e é Inverno");
-                        case "8" -> System.out.println(mes+"º mês é Agosto e é Inverno");
-                        case "9" -> System.out.println(mes+"º mês é Setembro e é Primavera");
-                        case "10" -> System.out.println(mes+"º mês é Outubro e é Primavera");
-                        case "11" -> System.out.println(mes+"º mês é Novembro e é Primavera");
-                        default -> System.out.println("Mês inválido");
+                        case "12" : System.out.println(mes+"º mês é Dezembro e é Verão");
+                        case "1" : System.out.println(mes+"º mês é Janeiro e é Verão");
+                        case "2" : System.out.println(mes+"º mês é Fevereiro e é Verão");
+                        case "3" : System.out.println(mes+"º mês é Março e é Outono");
+                        case "4" : System.out.println(mes+"º mês é Abril e é Outono");
+                        case "5" : System.out.println(mes+"º mês é Maio e é Outono");
+                        case "6" : System.out.println(mes+"º mês é Junho e é Inverno");
+                        case "7" : System.out.println(mes+"º mês é Julho e é Inverno");
+                        case "8" : System.out.println(mes+"º mês é Agosto e é Inverno");
+                        case "9" : System.out.println(mes+"º mês é Setembro e é Primavera");
+                        case "10" : System.out.println(mes+"º mês é Outubro e é Primavera");
+                        case "11" : System.out.println(mes+"º mês é Novembro e é Primavera");
+                        default : System.out.println("Mês inválido");
                     }
                     
                 }
 
 
-                case '3' -> {
+                case '3' : {
                     System.out.println("Insira um número correspondente a um dia da semana para saber o dia correspondente (1(Dom)-7(Sáb)): ");
                     String dia = sc.next();
 
                     switch (dia) {
-                        case "1"-> System.out.println(dia+"º dia é Domingo");
-                        case "2"-> System.out.println(dia+"º dia é Segunda-Feira");
-                        case "3"-> System.out.println(dia+"º dia é Terça-Feira");
-                        case "4"-> System.out.println(dia+"º dia é Quarta-Feira");
-                        case "5"-> System.out.println(dia+"º dia é Quinta-Feira");
-                        case "6"-> System.out.println(dia+"º dia é Sexta-Feira");
-                        case "7"-> System.out.println(dia+"º dia é Sábado");
-                        default -> System.out.println("Dia da semana inválido!");
+                        case "1": System.out.println(dia+"º dia é Domingo");
+                        case "2": System.out.println(dia+"º dia é Segunda-Feira");
+                        case "3": System.out.println(dia+"º dia é Terça-Feira");
+                        case "4": System.out.println(dia+"º dia é Quarta-Feira");
+                        case "5": System.out.println(dia+"º dia é Quinta-Feira");
+                        case "6": System.out.println(dia+"º dia é Sexta-Feira");
+                        case "7": System.out.println(dia+"º dia é Sábado");
+                        default : System.out.println("Dia da semana inválido!");
                     }
                     
                 }
 
 
-                case '4' -> {
+                case '4' : {
                     boolean formaTriangulo = false;
                     System.out.println("Insira o valor do 1º lado do triângulo hipotético: ");
                     double lado1 = sc.nextDouble();
@@ -176,7 +176,7 @@ public class exFlags {
                 }
 
 
-                case '5' -> {
+                case '5' : {
                     System.out.println("Insira a sua altura em metros: ");
                     double altura = sc.nextDouble();
                     boolean liberado = false;
@@ -197,7 +197,7 @@ public class exFlags {
                         System.out.println("Entrada não permitida!");
                     }
                     
-                }case '6' -> {
+                }case '6' : {
                     System.out.println("Insira o valor da sua compra: ");
                     double valor = sc.nextDouble();
                     System.out.println("Você é cliente VIP? (s/n) ");
@@ -233,14 +233,14 @@ public class exFlags {
                 }
 
                 
-                case 'S' -> {
+                case 'S' : {
                     System.out.printf("\nPrograma encerrado");
                     sc.close();
                     return;
                 }
 
 
-                default -> {
+                default : {
                     System.out.println("\nOpção inválida");
                 }
                 

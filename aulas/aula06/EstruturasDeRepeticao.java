@@ -1,14 +1,18 @@
-import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class EstruturasDeRepeticao {
     public static void main(String[]args){
     Scanner sc = new Scanner(System.in);
     
     System.out.println("Escolha a atividade:");
-    System.out.println("1 - Exemplo 01 (While)");
-    System.out.println("2 - Exemplo 02 (While)");
-    System.out.println("3 - Exemplo 03 (While)");
+    System.out.println("1 - Exemplo 01 (Validação de nota)");
+    System.out.println("2 - Exemplo 02 (Soma até condição de parada)");
+    System.out.println("3 - Exemplo 03 (Sistema de login)");
+    System.out.println("4 - Exemplo 04 (Média de valores até condição)");
+    System.out.println("5 - Exemplo 05 (Adivinhação de número)");
+    System.out.printf("Escolha: ");
     int escolha = sc.nextInt();
     
     switch (escolha) {
@@ -78,8 +82,67 @@ public class EstruturasDeRepeticao {
             System.out.println("Você atingiu o limite de 3 tentativas, tente amanhã");
             }
             break;
+        case 4:
+            double v1;
+            double media = 0;
+            int contador = 0;
+            do { 
+                System.out.println("Digite um número para adcionar a conta da média (para sair digite um número negativo): ");
+                v1 = sc.nextDouble();
+                contador = contador+1;
+                if (v1>=0){
+                media = media+v1;
+                }
+            } while (v1>=0);
+                if(contador == 1){
+                    System.out.println("Sua média foi 0, pois você não colocou nenhum valor positivo");
+                }
+                else{
+                contador = contador-1;
+                media = media/contador;
+                System.out.println("Sua média foi "+media+" e a quantidade de valores foi "+contador);
+                }    
+                break;
+        case 5:
+            Random random = new Random();
+            int aleatorio = random.nextInt(100)+1;
+            int picka = 0;
+            int pickb;
+            int vezes = 0;
+            int min = 1;
+            int max = 100;
+            do {
+                if (vezes>0){
+                    System.out.printf(", você errou");
+                }
+                pickb=picka;
+                if (vezes == 0){
+                    min = 1;
+                    max = 100;
+                }
+                else{
+                    if(picka < aleatorio){
+                        min = pickb + 1;
+                    }
+                    else if(picka > aleatorio){
+                        max = pickb - 1;
+                    }
+                }
+                System.out.printf("\nEscolha um número entre %d e %d: ", min, max);
+                picka = sc.nextInt();
 
+                if (picka<aleatorio){
+                    System.out.printf("O número aleatório é MAIOR");
+                }
+                if (picka>aleatorio){
+                    System.out.printf("O número aleatório é MENOR");
+                }
+                vezes++;
+            } while (aleatorio!=picka);
+                System.out.println("Parabéns, você acertou em "+vezes+" tentativa(s), o número era "+aleatorio);
+                break;
 
+            
         default:
             sc.close();
     }

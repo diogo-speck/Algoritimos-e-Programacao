@@ -1,5 +1,3 @@
-package aulas.aula02;
-
 import java.text.DecimalFormat;
 import java.util.Scanner;
 

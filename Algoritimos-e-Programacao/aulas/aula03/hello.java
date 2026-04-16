@@ -1,5 +1,3 @@
-package aulas.aula03;
-
 import java.util.Scanner;
 
 public class hello{

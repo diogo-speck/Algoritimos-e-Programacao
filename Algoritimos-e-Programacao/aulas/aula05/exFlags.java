@@ -1,5 +1,3 @@
-package aulas.aula05;
-
 import java.util.Scanner;
 
 // teste

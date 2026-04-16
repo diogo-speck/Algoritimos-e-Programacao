@@ -1,5 +1,3 @@
-package aulas.aula04;
-
 import java.util.Scanner;
 
 public class ex1ao11 {

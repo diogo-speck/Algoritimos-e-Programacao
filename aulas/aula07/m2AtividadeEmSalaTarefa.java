@@ -13,23 +13,25 @@ public class m2AtividadeEmSalaTarefa {
     int escolha = sc.nextInt();
         switch (escolha) {
             case 1:
-                int inteiro, soma=0;
+                int inteiro;
+                double media, soma=0, contagem=0;
                 ArrayList<Integer> lista = new ArrayList<>();
-                int contagem = 1;
             do { 
-                System.out.println("Digite um número inteiro: ");
-                inteiro = sc.nextInt(); 
-                lista.add(inteiro);
-                if(lista.contains(inteiro)){
+                try {
+                    System.out.println("Digite um número inteiro: ");
+                    inteiro = sc.nextInt(); 
+                    lista.add(inteiro);
                     contagem+=1;
                     soma = soma+inteiro;
+                } catch (Exception e) {
+                    System.out.println("Entrada inválida");
+                    sc.nextLine();
                 }
-                else{
-                    System.out.println("Digite um número inteiro válido!");
-                }
-            } while (!(contagem>10 && soma>100));
-            System.out.println("A soma final foi "+soma+" e a quantidade de elementos informados foi "+contagem+". Logo a média desses valores também foi de "+(soma/lista.size()));
-            System.out.println("Os elementos informados, em ordem, foram: "+lista);
+                
+            } while (!(contagem>=10 && soma>100));
+            media = soma/contagem;
+            System.out.println("A soma final foi "+soma+" e a quantidade de elementos válidos informados foi "+lista.size()+". Logo a média desses valores foi "+media);
+            System.out.println("Os elementos, em ordem, foram: "+lista);
             break;            
             
             case 2:

@@ -37,43 +37,61 @@ public class m2AtividadeEmSalaTarefa {
             case 2:
                 String avaliar;
                 int clientes, contador=0, nota, notas=0;
-                int conferir = 0;
+                double mediaa;
                 ArrayList<Integer> vezes = new ArrayList<>();
                 System.out.println("Deseja nos avaliar? (s/n) ");
                 avaliar = sc.next();
                 if (avaliar.equals("s")){
                     System.out.printf("Quantos clientes vão nos avaliar? ");
                     clientes = sc.nextInt();
-                    /*
-                    int[] numeros = [];
-                    clientes = numeros.length;
-                     */
-                    for (int i = 1; i < clientes+1; i++) {
-                        System.out.println("Escolha uma nota entre 1 e 5 cliente "+i);
-                        nota = sc.nextInt();
-                        if (nota>=1 || nota<=5){
-                            notas = notas+nota;
-                            contador+=1;
-                            vezes.add(nota);
-                        }
-                        else{
-                            while (nota>=1 || nota<=5) { 
-                                System.out.println("Por favor, coloque a nota dentro do intervalo de 1 e 5 cliente "+i);
-                                nota = sc.nextInt();
-                            }
-                            notas = notas+nota;
-                            contador+=1;
-                            vezes.add(nota);
-                        }
-                    
-                    }
-                    System.out.println("A quantidade de respostas registradas foram "+contador);
-                    System.out.println("A média da nossa avaliação foi "+notas/contador);
-                    
-                    System.out.println(vezes.contains(1));
-                    vezes.forEach( (n) -> { System.out.println(n); } );
+                    if (clientes > 0){
 
-                    
+                        /*
+                        int[] numeros = [];
+                        clientes = numeros.length;
+                        */
+                        
+                        for (int i = 1; i < clientes+1; i++) {
+                            System.out.println("Escolha uma nota entre 1 e 5 cliente "+i);
+                            nota = sc.nextInt();
+                            if (nota>=1 && nota<=5){
+                                notas = notas+nota;
+                                contador+=1;
+                                vezes.add(nota);
+                            }
+                            else{
+                                while (!(nota>=1 && nota<=5)) { 
+                                    System.out.println("Por favor, coloque a nota dentro do intervalo de 1 e 5 cliente "+i);
+                                    nota = sc.nextInt();
+                                }
+                                notas = notas+nota;
+                                vezes.add(nota);
+                            }
+                        
+                        }
+                        mediaa = Math.round((double) notas / contador);
+                        contador+=1;
+                        System.out.println("A quantidade de respostas registradas foram "+contador);
+                        System.out.println("A média da nossa avaliação foi aproximadamente "+mediaa);
+                        
+                        for (int j=1; j<=5;j++){
+                            int conferir=0;
+                            for (int n : vezes){
+                                if (n==j){
+                                    conferir++;
+                                }
+                            }
+                            System.out.println("A nota "+j+" foi colocada "+conferir+"x vez(es)");
+                        }
+                        
+                        /*
+                        System.out.println(vezes.contains(1));
+                        vezes.forEach( (n) -> { System.out.println(n); } );
+                        */
+                    }
+                    else{
+                    System.out.println("Ok, perguntamos outra hora então.");
+                    }
 
                 }
                 else{

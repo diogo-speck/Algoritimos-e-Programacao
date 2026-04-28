@@ -79,6 +79,7 @@ public class atividadeEmSala02M2 {
                     }
                     break;
                 case 5:
+                    //utilizar uma função quando aprender
                     int tio;
                     System.out.printf("Insira o limite máximo do intervalo: ");
                     tio = sc.nextInt();
@@ -100,11 +101,22 @@ public class atividadeEmSala02M2 {
                     double perfeitos=0;
                     System.out.printf("Insira um número inteiro maior que zero: ");
                     imperfeito = sc.nextInt();
-                    for (m=2;m>=2;m++){
-                        perfeitos = Math.pow(2, m-1)*(Math.pow(2, m)-1);
-                        System.out.println(perfeitos);
-                        if (perfeitos>=imperfeito){
-                            break;
+                    for (m = 2; ; m++) {
+                        long mersenne = (long)Math.pow(2, m) - 1;
+                        boolean primo = true;
+                        for (int l = 2; l <= Math.sqrt(mersenne); l++) {
+                            if (mersenne % l == 0) {
+                                primo = false;
+                                break;
+                            }
+                        }
+                        if (primo) {
+                            // true
+                            perfeitos = (long)Math.pow(2, m - 1) * mersenne;
+                            // System.out.println(perfeitos);
+                            if (perfeitos >= imperfeito) {
+                                break;
+                            }
                         }
                     }
                     double imperfeitoDouble = (double) imperfeito;

@@ -3,7 +3,7 @@ public class atividadeEmSala02M2 {
     public static void main(String[]args){
         Scanner sc = new Scanner(System.in);
         System.out.println("Escolha a atividade:");
-        System.out.println("1 - Impressão sequencial decrescente");
+        System.out.println("1 - Impressão sequencial decrescente (20 ao 1)");
         System.out.println("2 - Soma de números em intervalo");
         System.out.println("3 - Fatorial");
         System.out.println("4 - Sequência de Fibonacci");
@@ -43,12 +43,17 @@ public class atividadeEmSala02M2 {
                 case 3:
                     System.out.println("Digite um número inteiro positivo: ");
                     int numero = sc.nextInt();
-                    int fatorial=1;
-                    for (int c=1; c<=numero; c++){
-                        //System.out.println(c);
-                        fatorial = fatorial*c;
+                    if (numero<0){
+                        System.out.println("Só existe fatorial de números inteiros positivos");
                     }
-                    System.out.println("O fatorial do número "+numero+" é "+fatorial);
+                    else{
+                        int fatorial=1;
+                        for (int c=1; c<=numero; c++){
+                            //System.out.println(c);
+                            fatorial = fatorial*c;
+                        }
+                        System.out.println("O fatorial do número "+numero+" é "+fatorial);
+                    }
                     break;
                 case 4:
                     int termos, f=0, g=1, h;
@@ -58,14 +63,13 @@ public class atividadeEmSala02M2 {
                         System.out.println("Digite um número inteiro maior que zero");
                         break;
                     }
-                    else if (termos == 1){
+                    if (termos >= 1){
                         System.out.println(f);
                     }
-                    else{
-                        System.out.println(f);
+                    if (termos >= 2){
                         System.out.println(g);
                         if (termos > 2){
-                            for (int d=0; d<=termos-2; d++){
+                            for (int d=0; d<=termos-3; d++){
                                 h=f+g;
                                 System.out.println(h);
                                 f=g;
@@ -98,7 +102,7 @@ public class atividadeEmSala02M2 {
                     imperfeito = sc.nextInt();
                     for (m=2;m>=2;m++){
                         perfeitos = Math.pow(2, m-1)*(Math.pow(2, m)-1);
-                        //System.out.println(perfeitos);
+                        System.out.println(perfeitos);
                         if (perfeitos>=imperfeito){
                             break;
                         }
@@ -109,6 +113,7 @@ public class atividadeEmSala02M2 {
                     }
                     else{
                         System.out.println(imperfeito+" não é um número perfeito");
+                        System.out.println("O próximo número perfeito é "+perfeitos);
                     }
                     break;
                 case 7:

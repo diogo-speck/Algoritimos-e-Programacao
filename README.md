@@ -1,1 +1,1 @@
-# Algoritmos-e-Programacao
+# Branch dedicada a trabalhos em grupo

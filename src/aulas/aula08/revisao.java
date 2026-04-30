@@ -44,26 +44,66 @@ boolean - stores values with two states: true or false
    type variableName = value;
 
 You can declare the variable as "final" or "constant", which means unchangeable and read-only
+Note: By convention, final variables in Java are usually written in upper case (e.g. BIRTHYEAR). It is not required, but useful for code readability and common for many programmers.
 
+Java Data Types
 
 */
 
       String nome = "Diogo";
-      final String identidade = "homem";
+      final String ID = "homem";
       int idade = 18;
       System.out.println("Olá "+nome+", você tem "+idade+" anos.");
       idade = 19;
       System.out.println("Daqui a algum tempo, "+nome+" terá "+idade+" anos.");
-      System.out.println(nome+" é "+identidade);
-      // identidade = "mulher"; *não funciona
+      System.out.println(nome+" é "+ID);
+      // ID = "mulher"; *não funciona
       int x, y, z;
       x=y=z=1;
       System.out.println(x+y+z);
       System.out.println(x+""+y+""+z);
       System.out.println(x+" "+y+" "+z);
 
+      int padrao;
+      System.out.println("Insira um número: ");
+      padrao = sc.nextInt();
+      for(int n = 1; n <= padrao; n++) {
+         for(int o = padrao; o >= n; o--) {      
+             System.out.printf(n + " ");    
+         }
+         System.out.println();  
+      }
 
+      for(int n = 1; n <= padrao; n++) {
+         for(int o = padrao; o >= n; o--) {      
+             System.out.printf((padrao-o+1)+ " ");    
+         }
+         System.out.println();  
+      }
+
+      double membros, pai, mae, renda, bens;
+      final int SALARIOMIN = 1621;
+      final double BENSMAX = 1499999.99;
+      Boolean univali=true;
+      Boolean naturalidade=true;
+      System.out.println("Quants membros tem em sua família? ");
+      membros = sc.nextDouble();
+      System.out.println("Quanto seu pai ganha por mês? ");
+      pai = sc.nextDouble();
+      System.out.println("Quanto sua mãe ganha por mês? ");
+      mae = sc.nextDouble();
+      System.out.println("Quanto seu grupo familiar tem de valor em bens? ");
+      bens = sc.nextDouble();
       
+      renda = mae+pai;
+      if (((renda/membros)<4*SALARIOMIN)&&bens<BENSMAX){
+         System.out.println("Você está qualificado para participar do programa Universidade Gratuita");
+      }
+      else{
+         System.out.println("Você não está qualificado para participar do programa Universidade Gratuita");
+      }
+      
+
     sc.close();
    }
 }

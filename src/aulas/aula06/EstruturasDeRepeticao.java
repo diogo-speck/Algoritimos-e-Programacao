@@ -1,6 +1,6 @@
-import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class EstruturasDeRepeticao {
     public static void main(String[]args){
@@ -12,6 +12,10 @@ public class EstruturasDeRepeticao {
     System.out.println("3 - Exemplo 03 (Sistema de login)");
     System.out.println("4 - Exemplo 04 (Média de valores até condição)");
     System.out.println("5 - Exemplo 05 (Adivinhação de número)");
+    System.out.println("6 - Números ímpares de 1 a 100");
+    System.out.println("7 - Média de N valores");
+    System.out.println("8 - Tabuada");
+    System.out.println("9 - Tabuada do 1 ao 10");
     System.out.printf("Escolha: ");
     int escolha = sc.nextInt();
     
@@ -141,8 +145,49 @@ public class EstruturasDeRepeticao {
             } while (aleatorio!=picka);
                 System.out.println("Parabéns, você acertou em "+vezes+" tentativa(s), o número era "+aleatorio);
                 break;
-
-            
+        case 6:
+            for (int i=1;i<=100;i++){
+                if(i%2!=0){
+                System.out.printf(i+" ");
+                }
+            }
+            break;
+        case 7:
+            System.out.println("Quantos valores você quer calcular a média? ");
+            int nvalores = sc.nextInt();
+            double nota; media=0;
+            int i;
+            for(i=1;i<=nvalores;i++){
+                System.out.println("Digite a nota "+i+": ");
+                nota = sc.nextDouble();
+                media+=nota;
+            }
+            if(nvalores<=0){
+                System.out.println("Não é possível calcular a média de "+nvalores+" valores");
+            }
+            else{
+                System.out.println("Sua média de "+(i-1)+" nota(s) foi "+media/(i-1));
+            }
+            break;
+        case 8:
+            System.out.println("De qual número você quer a tabuada? ");
+            double tabuada = sc.nextDouble();
+            int t;
+            for(t=1;t<=10;t++){
+                System.out.println(tabuada+" * "+t+"= "+(tabuada*t));
+            }
+            break;
+        case 9:
+            System.out.println("Aqui está a tabuada do 1 ao 10");
+            for(int z=1;z<=10;z++){
+                System.out.println();
+                System.out.println();
+                System.out.println("Tabuada do "+z);
+                for(int y=1;y<=10;y++){
+                    System.out.printf(z+"*"+y+"= ["+(z*y)+"]| ");
+                }
+            }
+            break;
         default:
             sc.close();
     }

@@ -47,6 +47,29 @@ You can declare the variable as "final" or "constant", which means unchangeable 
 Note: By convention, final variables in Java are usually written in upper case (e.g. BIRTHYEAR). It is not required, but useful for code readability and common for many programmers.
 
 Java Data Types
+(Var?)
+
+Uma String também é referenciado a um objeto em Java (não primitivo)
+
+Non-primitive data types are called reference types because they refer to objects.
+
+The main differences between primitive and non-primitive data types are:
+
+Primitive types in Java are predefined and built into the language, while non-primitive types are created by the programmer (except for String).
+Non-primitive types can be used to call methods to perform certain operations, whereas primitive types cannot.
+Primitive types start with a lowercase letter (like int), while non-primitive types typically starts with an uppercase letter (like String).
+Primitive types always hold a value, whereas non-primitive types can be null.
+Examples of non-primitive types are Strings, Arrays, Classes etc.
+
+In Java, there are two main types of casting:
+
+Widening Casting (automatic) - converting a smaller type to a larger type size
+byte -> short -> char -> int -> long -> float -> double
+
+Narrowing Casting (manual) - converting a larger type to a smaller type size
+double -> float -> long -> int -> char -> short -> byte
+
+Java Operators
 
 */
 
@@ -123,6 +146,37 @@ Java Data Types
                System.out.println("Você não está qualificado para participar do programa Universidade Gratuita");
             }
       
+   
+      /*
+      Diferença de float e double em Java
+
+      double dobrar;
+      dobrar = 2.99f*2;
+      System.out.println(dobrar);
+      dobrar = 2.99*2;
+      System.out.println(dobrar);
+
+      Casos de ponto flutuantes, usar BigDecimal (mais precisão)
+      */
+      
+      // int sequencia = 100000000000000;
+      long sequencia = 100000000000000L;
+      System.out.println(sequencia);
+      float f1 = 35e3f;
+      System.out.println(f1);
+
+      // caracteres ASCII
+      for(int a=1;a<=128;a++){
+         char b = (char)a;
+         System.out.println(b+" ");
+      }
+
+      // Encurtando o número
+      System.out.println("Digite um número (0-9) com quantas casas quiser depois da vírgula: (0.1 nesse padrão) ");
+      double numero = sc.nextDouble();
+      int numeroint = (int) numero;
+      System.out.println("Seu número ficou assim: "+numeroint);
+
 
     sc.close();
    }

@@ -11,11 +11,11 @@ public class revisao {
 Anotações:
 
 Java é usado para:
-Mobile applications (specially Android apps)
+Mobile applications (specially Android apps) *
 Desktop applications
 Web applications
 Web servers and application servers
-Games
+Games *
 Database connection
 And much, much more!
 
@@ -81,27 +81,47 @@ Java Data Types
          System.out.println();  
       }
 
-      double membros, pai, mae, renda, bens;
+      String sn;
+      double membros=1, pai, mae, renda = 0, bens=0;
       final int SALARIOMIN = 1621;
       final double BENSMAX = 1499999.99;
-      Boolean univali=true;
+      Boolean matricula=true;
       Boolean naturalidade=true;
-      System.out.println("Quants membros tem em sua família? ");
-      membros = sc.nextDouble();
-      System.out.println("Quanto seu pai ganha por mês? ");
-      pai = sc.nextDouble();
-      System.out.println("Quanto sua mãe ganha por mês? ");
-      mae = sc.nextDouble();
-      System.out.println("Quanto seu grupo familiar tem de valor em bens? ");
-      bens = sc.nextDouble();
-      
-      renda = mae+pai;
-      if (((renda/membros)<4*SALARIOMIN)&&bens<BENSMAX){
-         System.out.println("Você está qualificado para participar do programa Universidade Gratuita");
+      System.out.println("Você nasceu ou está a pelo menos 5 anos residindo em Santa Catarina? (s/n)");
+      sn = sc.next();
+      if (sn.toLowerCase().equals("n")){
+         naturalidade = false;
       }
       else{
-         System.out.println("Você não está qualificado para participar do programa Universidade Gratuita");
+         System.out.println("Você está matriculado em uma instituição de ensino superior participante do programa? obs. Univali é participante (s/n)");
+         sn = sc.next();
+         if (sn.toLowerCase().equals("n")){
+            matricula = false;
+         }
+         else{
+            System.out.println("Quants membros tem em sua família? ");
+            membros = sc.nextDouble();
+            System.out.println("Quanto seu pai ganha por mês? ");
+            pai = sc.nextDouble();
+            System.out.println("Quanto sua mãe ganha por mês? ");
+            mae = sc.nextDouble();
+            System.out.println("Quanto seu grupo familiar tem de valor em bens? ");
+            bens = sc.nextDouble();
+            renda = mae+pai;
+            /* 
+            System.out.println(naturalidade);
+            System.out.println(matricula);
+            System.out.println(renda/membros);
+            System.out.println(bens);
+            */
+            if (naturalidade&&matricula&&((renda/membros)<4*SALARIOMIN)&&bens<BENSMAX){
+               System.out.println("Você está qualificado para participar do programa Universidade Gratuita");
+            }
+         }
       }
+      if (!(naturalidade&&matricula&&((renda/membros)<4*SALARIOMIN)&&bens<BENSMAX)){
+               System.out.println("Você não está qualificado para participar do programa Universidade Gratuita");
+            }
       
 
     sc.close();

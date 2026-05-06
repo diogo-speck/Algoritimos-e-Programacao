@@ -93,8 +93,17 @@ Left to right
 
 Java Strings
 
+A String in Java is actually an object, which means it contains methods that can perform certain operations on strings.
+For example, you can find the length of a string with the length() method
+You can use the charAt() method to access a character at a specific position in a string
+To compare two strings, you can use the equals() method:
+
+Concatenation
+
+
 
 */
+
 
       String nome = "Diogo";
       final String ID = "homem";
@@ -189,10 +198,13 @@ Java Strings
       System.out.println(f1);
 
       // caracteres ASCII
+      String c="";
       for(int a=1;a<=128;a++){
          char b = (char)a;
          System.out.println(b+" ");
+         c=c+b;
       }
+      System.out.println("São "+c.length()+" caracteres");
 
       // Encurtando o número
       System.out.println("Digite um número (0-9) com quantas casas quiser depois da vírgula: (0.1 nesse padrão) ");
@@ -220,6 +232,22 @@ Java Strings
       valor = save;
       valor <<= 1;
       System.out.println("<<= "+valor); // Desloca bits 1 posição à ESQUERDA (multiplica por 2)
+
+      // sc.next();
+      System.out.println();
+      System.out.println("Escreva um texto: ");
+      String horizontal = sc.next();
+      System.out.println("Seu texto na vertical: ");
+      for (int h=0; h<horizontal.length(); h++) {
+          System.out.println(horizontal.charAt(h));
+      }
+      
+      /*
+      for (char u : horizontal.toCharArray()) {
+      System.out.println(u);
+      }
+      */
+
 
     sc.close();
    }

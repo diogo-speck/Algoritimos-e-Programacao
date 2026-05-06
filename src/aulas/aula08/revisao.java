@@ -71,6 +71,29 @@ double -> float -> long -> int -> char -> short -> byte
 
 Java Operators
 
+Java divides the operators into the following groups:
+
+Arithmetic operators (mathematical operations)
+Assignment operators (=+ encurtador)
+Comparison operators (Booleans >= == <=)
+Logical operators (true or false values with logical && || !)
+Bitwise operators (mexe nos bits diretamente >>=)
+
+Order of Operations:
+Left to right
+()  Parentheses
+*, /, %  Multiplication, Division, Modulus
++, -  Addition, Subtraction
+>, <, >=, <=  Comparison
+==, != Equality
+&& Logical AND
+||  Logical OR
+=  Assignment
+
+
+Java Strings
+
+
 */
 
       String nome = "Diogo";
@@ -177,6 +200,26 @@ Java Operators
       int numeroint = (int) numero;
       System.out.println("Seu número ficou assim: "+numeroint);
 
+
+      // Operações BitWise
+      System.out.printf("Insira um valor inteiro: ");
+      int valor = sc.nextInt();
+      int save = valor;
+      System.out.println(valor);
+      valor &= 63;
+      System.out.println("and &= "+valor); // Confere cada digito binário e imprime os iguais 1111111
+      valor = save;
+      valor |= 63; // Soma binário básicamente deixando 1 quando dá 1111111 (adiciona 63 se for maior que 63)
+      System.out.println("or |= "+valor);
+      valor = save;
+      valor ^= 63;
+      System.out.println("xor ^= "+valor); // Subtrai binários em módulo básicamente tirando 1 quando dá 1111111
+      valor = save;
+      valor >>= 1;
+      System.out.println(">>= "+valor); // Desloca bits 1 posição à DIREITA (divide por 2) Shift
+      valor = save;
+      valor <<= 1;
+      System.out.println("<<= "+valor); // Desloca bits 1 posição à ESQUERDA (multiplica por 2)
 
     sc.close();
    }

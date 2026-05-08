@@ -1,5 +1,5 @@
-import java.util.Scanner;
 import java.util.Random;
+import java.util.Scanner;
 
 public class vetoresEmatrizes {
     public static void main(String[]args){
@@ -10,24 +10,26 @@ public class vetoresEmatrizes {
         //Vetores (1 dimensão)
         int[] valoresA = new int[5];
         int tamanhoA = valoresA.length;
-        for(int i=0;i<tamanhoA;i++){
-                System.out.println(valoresA[i]);
-            }
+
         // posição sempre começa em 0 e tamanho fixo (imutável)
         System.out.println("Tamanho do vetor [A] = "+tamanhoA);
 
-        int[] algarismos = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-        System.out.println("São "+algarismos.length+" algarismos que existem, são eles: ");
-        for(int i=0;i<algarismos.length;i++){
-                System.out.println(algarismos[i]);
+        for(int i=0;i<tamanhoA;i++){
+                System.out.print(valoresA[i]+" ");
             }
 
-        System.out.println("Menu");
+        int[] algarismos = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+        System.out.println("\nExistem "+algarismos.length+" algarismos, são eles: ");
+        for(int i=0;i<algarismos.length;i++){
+                System.out.print(algarismos[i]+" ");
+            }
+
+        System.out.println("\nMenu");
         System.out.println("1- Soma dos Elementos de um Array/Vetor");
         System.out.println("2- Maior e Menor Elemento de um vetor (aleatório)");
         System.out.println("3- Vetor com os primeiros N números primos");
         System.out.println("4- Vetor com 7 números inteiros mostrado em ordem inversa");
-        System.out.println("5- Contagem de Elementos em um vetor com 15 números");
+        System.out.println("5- Contagem de Elementos em um vetor com 15 números/Par ou Ímpar");
         System.out.printf("Escolha uma opção: ");
         int escolha = sc.nextInt();
         switch (escolha) {
@@ -40,14 +42,14 @@ public class vetoresEmatrizes {
                 }
                 System.out.println("Array inteiro: ");
                 for(int i=0;i<tamanhoA;i++){
-                    System.out.println(valoresA[i]);
+                    System.out.print(valoresA[i]+" ");
                 }
-                System.out.println("Sua soma final é: "+soma);
+                System.out.println("\nSua soma final é: "+soma);
                 break;
             case 2:
                 byte[] vetorAleatorio = new byte[10];
                 byte menor=vetorAleatorio[0], maior=vetorAleatorio[0];
-                System.out.println("10 números aleatórios saindo do forno:");
+                System.out.println("\n10 números aleatórios saindo do forno:");
                 aleatorio.nextBytes(vetorAleatorio);
                 for(byte i=0;i<vetorAleatorio.length;i++){
                     System.out.print(vetorAleatorio[i]+" ");
@@ -74,6 +76,39 @@ public class vetoresEmatrizes {
                 System.out.println("\nO menor valor foi: "+menor);
                 System.out.println("O maior valor foi: "+maior);
 
+                // tentativa de organizar em ordem crescente (Bubble Sort)
+                boolean troca;
+                byte save;
+                do {
+                    troca = false;
+                    for(byte i = 0; i < vetorAleatorio.length - 1; i++) {
+                        if(vetorAleatorio[i] > vetorAleatorio[i + 1]) {
+                            save = vetorAleatorio[i];
+                            vetorAleatorio[i] = vetorAleatorio[i + 1];
+                            vetorAleatorio[i + 1] = save;
+                            troca = true;
+                        }
+                    }
+                } while(troca);
+                System.out.println("\nArray ordenado em ordem crescente:");
+                for(byte v : vetorAleatorio) {
+                    System.out.print(v + " ");
+                }
+                byte[] vetorInverso = new byte[10];
+                System.out.println("\nOrdem inversa/decrescente: ");
+                    for(byte i=0;i<vetorAleatorio.length;i++){
+                        vetorInverso[i] = vetorAleatorio[9-i];
+                        System.out.print(vetorInverso[i]+" ");
+                    }
+
+                /*
+                Existe também a opção mais fácil importando o Arrays.sort
+                import java.util.Arrays;
+                Arrays.sort(vetorAleatorio);
+
+                Ideia mais para frente, fazer o cálculo do desvio padrão
+                */
+                
                 break;
             case 3:
                     int tia;
@@ -93,29 +128,26 @@ public class vetoresEmatrizes {
                             tamanho +=1;
                         }
                     }
-                    // no máximo 10 elementos, então para no 29
-                    if (tamanho<=10){
-                        int[] primos = new int [tamanho];
-                        for(int k=2; k<=tia; k++){
-                            boolean primo = true;
-                            for(int l=2; l<=Math.sqrt(k); l++){
-                                if (k%l==0){
-                                    primo = false; 
-                                }
-                            }
-                            if (primo==true){
-                            primos[indice] = k;
-                            indice++;
+
+                    int[] primos = new int [tamanho];
+                    for(int k=2; k<=tia; k++){
+                        boolean primo = true;
+                        for(int l=2; l<=Math.sqrt(k); l++){
+                            if (k%l==0){
+                                primo = false; 
                             }
                         }
+                        if (primo==true){
+                        primos[indice] = k;
+                        indice++;
+                        }
+                    }
                         for(int i = 0; i < primos.length; i++){
                         System.out.print(primos[i] + " ");
-                    }
-                    }
-                    else{
-                        System.out.println("(O vetor não suporta mais que 10 elementos, então o máximo que armazenou foram os 10 primeiros)");
-                        System.out.println("2 3 5 7 11 13 17 19 23 29");
-                    }
+                    } 
+                    if(indice<=1){
+                        System.out.println("Não há números primos nesse intervalo");
+                    }                   
                 break;
                 case 4:
                     byte[] vetor7a = new byte[7];
@@ -133,8 +165,24 @@ public class vetoresEmatrizes {
                     }
                     break;
                 case 5:
+                    boolean parouimpar = false;
+                    String parImpar = "";
+                    do { 
+                        System.out.println("Escolha par ou impar: (p/i)");
+                        parImpar = sc.next().toLowerCase();
+                        if (parImpar.equals("p")||parImpar.equals("par")){
+                            parImpar = "par";
+                            parouimpar = true;
+                        }
+                        else if (parImpar.equals("i")||parImpar.equals("impar")||parImpar.equals("ímpar")) {
+                            parImpar = "impar";
+                            parouimpar = true;
+                        }
+                    } while (!parouimpar);
+                    
                     int par=0;
                     int[] vetor15 = new int[15];
+                    System.out.println("Vetor gerado: ");
                     for(byte i=0;i<vetor15.length;i++){
                         vetor15[i] = aleatorio.nextInt(11);
                         System.out.print(vetor15[i]+" ");
@@ -144,6 +192,22 @@ public class vetoresEmatrizes {
                     }
                     System.out.println("\nExistem "+par+" números pares nesse vetor");
                     System.out.println("Existem "+(15-par)+" números impares nesse vetor");
+                    if(par>=8){
+                        if(parImpar.equals("par")){
+                            System.out.println("Você GANHOU, teve mais número pares");
+                        }
+                        if(parImpar.equals("impar")){
+                            System.out.println("Você PERDEU, teve mais número pares");
+                        }
+                    }
+                    else{
+                        if(parImpar.equals("par")){
+                            System.out.println("Você PERDEU, teve mais número ímpares");
+                        }
+                        if(parImpar.equals("impar")){
+                            System.out.println("Você GANHOU, teve mais número ímpares");
+                        }
+                    }
                     break;
             default:
                 break;

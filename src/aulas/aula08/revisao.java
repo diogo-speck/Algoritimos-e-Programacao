@@ -3,6 +3,10 @@ package aulas.aula08;
 import java.util.Scanner;
 
 public class revisao {
+
+    public static String saudacaoPersonalizada(String name, String local) {
+         return "Olá ".concat(name).concat("! Bem-vindo à ").concat(local).concat("!");
+      }
    public static void main(String[]args){
     
     Scanner sc = new Scanner(System.in);
@@ -103,7 +107,10 @@ To compare two strings, you can use the equals() method:
 
 Concatenation
 
+Se caso tentar concatenar qualquer variável com String, virará uma String
+\\
 
+Java Math
 
 */
 
@@ -204,7 +211,7 @@ Concatenation
       String c="";
       for(int a=1;a<=128;a++){
          char b = (char)a;
-         System.out.println(b+" ");
+         System.out.print(b+" ");
          c=c+b;
       }
       System.out.println("São "+c.length()+" caracteres");
@@ -242,7 +249,7 @@ Concatenation
       String horizontal = sc.next();
       System.out.println("Seu texto na vertical: ");
       for (int h=0; h<horizontal.length(); h++) {
-          System.out.println(horizontal.charAt(h));
+         System.out.println(horizontal.charAt(h));
       }
       
       /*
@@ -251,6 +258,38 @@ Concatenation
       }
       */
 
+      String mensagem = saudacaoPersonalizada("usuário", "empresa");
+      System.out.println(mensagem);
+      // Saída: Olá usuário! Bem-vindo à empresa!
+      /*
+      public - Torna o método acessível
+      static - Permite chamar da main() sem instanciar* a classe (criar um objeto)
+      String - Define o tipo de retorno explicitamente
+
+      "método static" = parece função, mas não é, é método
+      */
+
+      boolean verdade = true;
+      String vf = " ";
+      vf = verdade+vf+verdade;
+      System.out.println("\\92 & |124 \""+vf+"\"");
+      String txt = "teste";
+      System.out.println("\n\t"+txt+"\b"+txt);
+
+      //Transformar qualquer palavra em palíndromo
+      System.out.println("Insira uma palavra para fazer um palíndromo: ");
+      String palindromo = sc.next();
+      System.out.println("Palavra palíndromada: ");
+      for (int p=0; p<palindromo.length(); p++) {
+         System.out.print(palindromo.charAt(palindromo.length()-p-1));
+      }
+      if (palindromo.length()>2){
+         System.out.printf("\b"+palindromo);
+      }
+      else{
+         System.out.printf(palindromo);
+      }
+      
 
     sc.close();
    }

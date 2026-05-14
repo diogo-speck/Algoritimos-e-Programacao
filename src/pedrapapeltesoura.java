@@ -1,5 +1,3 @@
-package aulas.trabalhosEmGrupo;
-
 import java.util.Scanner;
 import java.util.Random;
 

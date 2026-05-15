@@ -112,6 +112,16 @@ Se caso tentar concatenar qualquer variável com String, virará uma String
 
 Java Math
 
+The Math.max(x,y) method can be used to find the highest value of x and y
+The Math.min(x,y) method can be used to find the lowest value of x and y
+The Math.abs(x) method returns the absolute (positive) value of x (módulo)
+Note: The Math.pow() (math functions em geral) method always returns a double, even if the result is a whole number.
+
+Para arredondar:
+Math.round(x) - rounds to the nearest integer
+Mas também tem o ceil (para cima) e o floor (para baixo)
+
+
 */
 
 
@@ -288,6 +298,45 @@ Java Math
       }
       else{
          System.out.printf(palindromo);
+      }
+
+      double cara = Math.random();
+      System.out.println("\nEscolha cara ou coroa (c/k): ");
+      String coroa = sc.next().toLowerCase();
+      if (coroa.equals("cara")||coroa.equals("c")){
+         if (cara<0.5){
+            System.out.println("Você PERDEU, caiu coroa");
+         }
+         else{
+            System.out.println("Você GANHOU, caiu cara");
+         }
+      }
+      else if (coroa.equals("coroa")||coroa.equals("k")){
+         if (cara<0.5){
+            System.out.println("Você GANHOU, caiu coroa");
+         }
+         else{
+            System.out.println("Você PERDEU, caiu cara");
+         }
+      }
+      else{
+         System.out.printf("Você não escolheu nem cara, nem coroa, mas por curiosidade caiu ");
+         if (cara<0.5){
+            System.out.print("coroa");
+         }
+         else{
+            System.out.print("cara");
+         }
+      }
+      
+      // gerando números aleatórios com input do usuário sem importar Random
+      System.out.println("\nAté qual número natural você quer que os números aleatórios gerem: ");
+      int max = sc.nextInt();
+      System.out.println("Quantos números aleatórios você quer gerar nesse intervalo: ");
+      int vezes = sc.nextInt();
+      for (int i=0; i<vezes;i++){
+         int randomNum = (int)(Math.random() * (max+1)); // começa sempre fechado em 0 e aberto na constante multiplicada por 1, por isso arredonda para baixo usando int para ignorar as casas decimais
+         System.out.print(randomNum+" ");
       }
       
 

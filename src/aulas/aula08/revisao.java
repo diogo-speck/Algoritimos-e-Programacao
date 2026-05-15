@@ -122,6 +122,14 @@ Math.round(x) - rounds to the nearest integer
 Mas também tem o ceil (para cima) e o floor (para baixo)
 
 
+Java Booleans
+
+equal to (==) operator to evaluate an expression
+Note: It is up to you whether you store the result of a comparison in a boolean variable or use the comparison directly.
+Storing the result can make your code easier to read, especially if you want to reuse it.
+
+Java If ... Else
+
 */
 
 
@@ -339,6 +347,15 @@ Mas também tem o ceil (para cima) e o floor (para baixo)
          System.out.print(randomNum+" ");
       }
       
+      int vouf = (int)(Math.random() * 2);
+      //System.out.println(vouf);
+      if (vouf==0){
+         verdade = false;
+      }
+      else{
+         verdade = true;
+      }
+      System.out.println(verdade);
 
     sc.close();
    }

@@ -18,7 +18,7 @@ try (Scanner sc = new Scanner(System.in)) {
     n3= sc.nextDouble();
 
     soma =n1+n2+n3;
-    media = soma/3;
+    media = Math.round(soma/3);
 
     System.out.println("Sua média é: " + media);
 }

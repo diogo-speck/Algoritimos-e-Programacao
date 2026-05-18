@@ -130,16 +130,67 @@ Storing the result can make your code easier to read, especially if you want to 
 
 Java If ... Else
 
+Equal to: a == b
+If an if statement has only one line of code, you can write it without curly braces { }
+else does not have a condition - it runs when the if condition is false.
+
+Ternary Operator (Short Hand if...else)
+variable = (condition) ?(if) expressionTrue :(else)  expressionFalse;
+Nested Ternary
+Mais trabalhoso, mas é possível colocar mais de 1 condição
+
+Java Switch (só int, String e enum?)
+
+The switch expression is evaluated once.
+The result is compared with each case value.
+If there is a match, the matching block of code runs.
+The break statement stops the switch after the matching case has run.
+The default statement runs if there is no match.
+A break can save a lot of execution time because it "ignores" the execution of all the rest of the code in the switch block.
+
+Java While Loop
+
+Porque usar i como variável? It's a counter variable and a common choice in simple loops because it's short, traditional, and stands for 'index' or 'iterator'.
+A diferença de while e do/while é que ele executa sempre pelo menos 1 vez
+
+Java For Loop
+
+It is also possible to place a loop inside another loop. This is called a nested loop.
+The "inner loop" will be executed one time for each iteration of the "outer loop":
+for-each Loop = for (type variableName : arrayName)
+
+Java Break and Continue
+
+break statement can be used in switch and loops, such as for
+The continue statement breaks one iteration (in the loop), if a specified condition occurs, and continues with the next iteration in the loop.
+
+Java Arrays
+
+You can access an array element by referring to the index number.
+To find out how many elements an array has, use the length property
+Tip: The shortcut syntax (without new) is most often used when the values are known at the start. Use 'new' with a size when you want to create an empty array and fill it later.
+The colon (:) is read as "in". So you can read the loop as: "for each variable in array"
+However, it only gives you the values, not their positions (indexes) in the array.
+So, if you need both the position (index) of each element and its value, a regular for loop is the right choice.
+
+Terminei o tutorial do java, Java Methods em diante será em outro arquivo de revisão
 */
 
-
+      
       String nome = "Diogo";
       final String ID = "homem";
       int idade = 18;
       System.out.println("Olá "+nome+", você tem "+idade+" anos.");
+      if (idade>=18){System.out.println("Com "+idade+" anos está liberado");}
+      else{System.out.println("Com "+idade+" anos NÃO está liberado");}
       idade = 19;
       System.out.println("Daqui a algum tempo, "+nome+" terá "+idade+" anos.");
       System.out.println(nome+" é "+ID);
+      int dia = 1;
+      switch (dia) {
+          default:
+              System.out.println("Hoje é dia de resenha");
+      }
       // ID = "mulher"; *não funciona
       int x, y, z;
       x=y=z=1;
@@ -277,6 +328,11 @@ Java If ... Else
       */
 
       String mensagem = saudacaoPersonalizada("usuário", "empresa");
+      int contagem = 3;
+      while (contagem>0) {
+         System.out.println("Conectando...");
+         contagem--;         
+      }
       System.out.println(mensagem);
       // Saída: Olá usuário! Bem-vindo à empresa!
       /*
@@ -348,14 +404,45 @@ Java If ... Else
       }
       
       int vouf = (int)(Math.random() * 2);
-      //System.out.println(vouf);
+      /*
+      System.out.println(vouf);
       if (vouf==0){
          verdade = false;
       }
       else{
          verdade = true;
       }
-      System.out.println(verdade);
+      */
+      verdade = (vouf==0)? false : true;
+      System.out.println((vouf==0)? false : true);
+
+      int [][] matriz = new int[3][];
+      for (Object teste : matriz) {
+          System.out.println(teste);
+      } 
+
+      /*
+      switch (matriz) {
+          default:
+              System.out.println("Não é possível colocar um array dentro de um switch");
+      }
+      */
+      Enum semTipo;
+      while (true) { 
+          break;
+      }
+
+      String [] lista = new String [5];
+      for(int i=0;i<5;i++){
+         System.out.println("Insira algo na posição "+(i+1)+" da lista (0 para sair): ");
+         lista[i]=sc.next();
+         if (lista[i].equals("0")){
+            break;
+         }
+      }
+      for(String i : lista){
+         System.out.print(i+" ");
+      }
 
     sc.close();
    }

@@ -7,8 +7,11 @@ public class jogoDaMemoria {
     
         Random aleatorio = new Random();
         
-        // System.out.println(gerador.nextInt());
-        // intervalo letras maiúsculas ASCII @100 - 130X
+        /*
+        Lista de coisas que tem que arrumar:
+        - Selecionando a mesma posição em seguida conta como ponto
+        - Mostrar um placar quando 1 jogador fazer ponto
+        */
         
         char confere='a';
         char confere2='a';
@@ -106,7 +109,7 @@ public class jogoDaMemoria {
             }
 
             if (confere == confere2){
-                System.out.println("Qual jogador fez ponto, o jogador 1 ou o jogador 2 (1/2): ");
+                System.out.println("\nQual jogador fez ponto, o jogador 1 ou o jogador 2 (1/2): ");
                 escolha = sc.nextInt();
                 if (escolha==1){
                     pontos1+=1;
@@ -135,6 +138,9 @@ public class jogoDaMemoria {
 
 
 
+
+        // System.out.println(gerador.nextInt());
+        // intervalo letras maiúsculas ASCII @100 - 130X
 
         /* Aqui gera aleatório mais do que 2 vezes
         for(int i=0;i<tabuleiro.length;i++){

@@ -42,7 +42,7 @@ public class jogoDaMemoria {
                 }
             }
         }
-        // só pra saber o gabarito
+
         for (int i=0;i<7;i++){
             System.out.println();
             for (int j=0;j<7;j++){
@@ -139,41 +139,6 @@ public class jogoDaMemoria {
         else{
             System.out.println("EMPATE");
         }
-
-
-
-
-        // System.out.println(gerador.nextInt());
-        // intervalo letras maiúsculas ASCII @100 - 130X
-
-        /* Aqui gera aleatório mais do que 2 vezes
-        for(int i=0;i<tabuleiro.length;i++){
-            System.out.println();
-            for(int j=0;j<tabuleiro.length;j++){
-                int intervalo = aleatorio.nextInt(25);
-                intervalo +=64; // ver depois
-                char z = (char)intervalo;                    
-                tabuleiro[i][j] = z;
-                System.out.print(tabuleiro[i][j]);
-            }
-        }
-        */        
-        
-
-        /* Intervalo de @ até X
-        for(int j=64;j<89;j++){
-            char z = (char) j;
-                System.out.print(z);
-        }
-        */
-
-        /* printar matriz
-        for(int i=0;i<7;i++){
-            for(int j=0;j<7;j++){
-                System.out.println(varialvel [i][j]);
-            }
-        }
-        */
 
         sc.close();
     }

@@ -16,8 +16,8 @@ public class jogoDaMemoria {
         char confere='a';
         char confere2='a';
         boolean acertou = false;
-        int linha, coluna, escolha, linha2=0, coluna2=0;
-        int contador = 0, pontos1=0, pontos2=0;
+        int linha, coluna, escolha, linha2=0, coluna2=0,jogador=0;
+        int pontos1=0, pontos2=0;
         char adivinhado[][] = new char [7][7];
         char adivinhar[][] = new char [7][7];
         for (int i=0;i<7;i++){
@@ -56,9 +56,10 @@ public class jogoDaMemoria {
             }
         }
         
-        System.out.println("\nBem-vindo ao jogo da memória");
+        System.out.println("\nBem-vindo ao jogo da memória ");
         do {
-            System.out.println("Seu tabuleiro: ");
+            System.out.print("Jogador "+(jogador+1));
+            System.out.println("\nSeu tabuleiro: ");
             for (int i=0;i<7;i++){
                 System.out.println();
                 for (int j=0;j<7;j++){
@@ -112,23 +113,34 @@ public class jogoDaMemoria {
             }
 
             if (acertou){
-                System.out.println("\nQual jogador fez ponto, o jogador 1 ou o jogador 2 (1/2): ");
-                escolha = sc.nextInt();
-                if (escolha==1){
-                    pontos1+=1;
+                do{
+                    System.out.println("\nQual jogador fez ponto, o jogador 1 ou o jogador 2 (1/2): ");
+                    escolha = sc.nextInt();
+                    if (escolha==1){
+                        pontos1+=1;
+                    }
+                    else if (escolha==2){
+                        pontos2+=1;
+                    }
+                    else{
+                        System.out.println("Esse jogador não existe (escolha o jogador 1 ou 2)");
+                    }
+                }while(escolha!=1&&escolha!=2);
+                System.out.println("Jogue novamente");
+                System.out.println("\n(Placar) Jogador 1: "+pontos1+" | Jogador 2: "+pontos2);
+            }
+            if(!acertou){
+                System.out.println("\nTurno do próximo jogador");
+                if(jogador==1){
+                    jogador--;
                 }
                 else{
-                    pontos2+=1;
+                    jogador++;
                 }
-                System.out.println("\nJogue novamente");
-                contador +=1;
-            }
-            else{
-                System.out.println("\nTurno do próximo jogador");
             }
         
             
-        } while (contador<12);
+        } while ((pontos1+pontos2)<12);
         if (pontos1>pontos2){
             System.out.println("Jogador 1 ganhou com "+pontos1+" pontos");
         }

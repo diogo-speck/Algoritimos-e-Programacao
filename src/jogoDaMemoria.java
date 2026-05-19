@@ -15,6 +15,7 @@ public class jogoDaMemoria {
         
         char confere='a';
         char confere2='a';
+        boolean acertou = false;
         int linha, coluna, escolha, linha2=0, coluna2=0;
         int contador = 0, pontos1=0, pontos2=0;
         char adivinhado[][] = new char [7][7];
@@ -79,14 +80,15 @@ public class jogoDaMemoria {
                     for(int j=0;j<7;j++){
                         if (i==linha&&j==coluna){
                             System.out.print(tabuleiro [i][j]+" ");
-                            adivinhar [i][j] = tabuleiro [i][j];
-                            if (turno<1){
+                            if (turno==0){
                                 confere =tabuleiro [i][j];
                                 linha2 = linha;
                                 coluna2 = coluna;
+                                adivinhar [i][j] = tabuleiro [i][j];
                             }
-                            else{
+                            if (turno==1&&(adivinhar [i][j]!=tabuleiro [i][j])){
                                 confere2 =tabuleiro [i][j];
+                                adivinhar [i][j] = tabuleiro [i][j];
                             }
                         }
                         else{
@@ -95,20 +97,21 @@ public class jogoDaMemoria {
                        
                     }
                 }
-                if ((turno>0)&&(confere==tabuleiro[linha][coluna])){
+                if (confere == confere2 && (linha != linha2 || coluna != coluna2)){
                     adivinhar[linha][coluna] = tabuleiro[linha][coluna];
                     adivinhado[linha][coluna] = adivinhar[linha][coluna] ;
                     adivinhar[linha2][coluna2] = tabuleiro[linha2][coluna2];
                     adivinhado[linha2][coluna2] = adivinhar[linha2][coluna2] ;
-
+                    acertou = true;
                 }
                 else{
                     adivinhar[linha][coluna] = adivinhado[linha][coluna];
+                    acertou = false;
                 }
             
             }
 
-            if (confere == confere2){
+            if (acertou){
                 System.out.println("\nQual jogador fez ponto, o jogador 1 ou o jogador 2 (1/2): ");
                 escolha = sc.nextInt();
                 if (escolha==1){

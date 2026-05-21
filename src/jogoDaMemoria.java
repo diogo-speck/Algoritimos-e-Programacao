@@ -94,10 +94,16 @@ public class jogoDaMemoria {
                 }
                 if (confere == confere2 && (linha != linha2 || coluna != coluna2)){
                     adivinhar[linha][coluna] = tabuleiro[linha][coluna];
-                    adivinhado[linha][coluna] = adivinhar[linha][coluna] ;
+                    adivinhado[linha][coluna] = adivinhar[linha][coluna];
                     adivinhar[linha2][coluna2] = tabuleiro[linha2][coluna2];
                     adivinhado[linha2][coluna2] = adivinhar[linha2][coluna2] ;
                     acertou = true;
+                }
+                else if (confere=='*'||confere2=='*') {
+                    System.out.print("\nVocê encontrou a carta curinga, perca seu turno");
+                    adivinhar[linha][coluna] = '*';
+                    adivinhado[linha][coluna] = '*';
+                    turno+=2;
                 }
                 else{
                     adivinhar[linha][coluna] = adivinhado[linha][coluna];

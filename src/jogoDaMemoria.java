@@ -100,7 +100,7 @@ public class jogoDaMemoria {
                     acertou = true;
                 }
                 else if (confere=='*'||confere2=='*') {
-                    System.out.print("\nVocê encontrou a carta curinga, perca seu turno");
+                    System.out.print("\n\nVocê encontrou a carta curinga, perca seu turno");
                     adivinhar[linha][coluna] = '*';
                     adivinhado[linha][coluna] = '*';
                     turno+=2;
@@ -116,12 +116,12 @@ public class jogoDaMemoria {
                     if (jogador==1){
                         pontos1+=1;
                     }
-                    else{
+                    if (jogador==2){
                         pontos2+=1;
                     }
-                System.out.println("\n(Placar) Jogador 1: "+pontos1+" | Jogador 2: "+pontos2);
+                
                 if ((pontos1+pontos2)<12){
-                    System.out.println("Jogue novamente");
+                    System.out.println("\n\nJogue novamente");
                 }
             }
             if(!acertou){
@@ -133,7 +133,7 @@ public class jogoDaMemoria {
                     jogador--;
                 }
             }
-        
+            System.out.println("\n\n(Placar) Jogador 1: "+pontos1+" | Jogador 2: "+pontos2);
             
         } while ((pontos1+pontos2)<12);
         if (pontos1>pontos2){

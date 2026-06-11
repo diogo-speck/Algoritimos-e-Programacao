@@ -1,32 +1,31 @@
 /*
 Linguagem compilada != máquina virtual do Java
 
-#include <stdio.h> // import de biblioteca do java
-// não precisa declarar o scanner
-int main()
-{
-    printf("Hello World"); // extensão de C
-    // string é minúscula
-    
+#include <stdio.h> é o import de biblioteca do java
+não precisa declarar o scanner
 
-    return 0; // sempre tem que retornar algo
-}
+int main() é padrão de toda aplicação em C++ (pode ser void main() mas é recomendado usar int main())
+printf("Hello World"); // extensão de C
+    
+return 0; // sempre tem que retornar algo
 */
-#include <iostream> 
+#include <iostream>
 #include <locale>   // Biblioteca para configuração de locale
 #include <clocale>  // Para usar setlocale()
-#include <string> // para usar strings
+#include <string> // para usar strings (string é minúscula em C++)
 #include <cmath> // equivalente ao java.math
+#include <cstdlib> // para usar rand() e srand()
+#include <ctime> // para usar time() para o rand()
 using namespace std; // para não precisar usar std::
 
 int main() {
     // Configura o locale para o padrão do sistema (ex.: português do Brasil)
     std::setlocale(LC_ALL, ""); // poderia ser std::setlocale(LC_ALL, "pt_BR.UTF-8");
-    cout << "Hello World" << endl; // poderia usar std::cout<<"Hello World";
+    std::cout<<"Oi user" << endl;
     
     int idade;
     string nome;
-    cout << "Insira seu nome: " << endl;
+    cout << "Insira seu nome: ";
     getline(cin, nome);
     cout << "Seu nome: " << nome << endl;
     cout << "Insira sua idade: ";
@@ -118,17 +117,87 @@ int main() {
         cin >> v1;
         cout << "Digite o 2º valor: ";
         cin >> v2;
-        if(v2=0){
-            cout << "Não é possível dividir por zero";
+        if(v2==0){
+            cout << "Não é possível dividir por zero" << endl;
         }
         else{
-            cout << "Quociente dos seus valores: " << v1/v2 << endl;
+            cout << "Quociente dos seus valores: " << (v1/v2) << endl;
         }
         break;
     default:
+            cout << "Escolha inválida" << endl;
         break;
     }
     }while(escolha!=5);
+
+    cout << "\nAtividade 03 - Algarismo randômico" << endl;
+    srand(time(0)); // Semente para gerar números diferentes a cada execução
+    int numero_secreto = rand() % 100 + 1; // Gera um número entre 1 e 100
+    cout << "Tente adivinhar o número secreto entre 1 e 100!" << endl;
+    int tentativa;
+    do {
+        cout << "Digite sua tentativa: ";
+        cin >> tentativa;
+        if (tentativa < numero_secreto) {
+            cout << "Mais alto! Tente novamente." << endl;
+        } else if (tentativa > numero_secreto) {
+            cout << "Mais baixo! Tente novamente." << endl;
+        } else {
+            cout << "Parabéns! Você acertou o número secreto!" << endl;
+        }
+    } while (tentativa != numero_secreto);
+    cout << "O número secreto era: " << numero_secreto << endl;
+
+    cout << "\nAtividade 04 - Média de N valores" << endl;
+    int n;
+    cout << "Quantos números você quer inserir? ";
+    cin >> n;
+    double soma = 0, valor;
+    for (int i = 0; i < n; i++) {
+        cout << "Digite o " << (i + 1) << "º valor: ";
+        cin >> valor;
+        soma += valor;
+    }
+    double media = soma / n;
+    cout << "A média dos valores inseridos é: " << media << endl;
+
+    cout << "\nAtividade 05 - Invertendo vetor 7x1 aleatório" << endl;
+    cout << "Vetor original:" << endl;
+    const int tamanho = 7; // Tamanho invariável
+    int vetor[tamanho]; // Declaração do vetor
+    // Preenchendo o vetor com números aleatórios entre 1 e 100
+    for (int i = 0; i < tamanho; i++) {
+        vetor[i] = rand() % 100 + 1;
+        cout << vetor[i] << " ";
+    }
+    cout << "\nVetor invertido:" << endl;
+    // Invertendo o vetor
+    for (int i = 0; i < tamanho/2; i++) {
+        int temp = vetor[i]; // Armazena o valor atual para troca
+        vetor[i] = vetor[tamanho - 1 - i]; // Atribui o valor do elemento oposto
+        vetor[tamanho - 1 - i] = temp; // Completa a troca
+    }
+    for (int i = 0; i < tamanho; i++) {
+        cout << vetor[i] << " ";
+    }
+
+    cout << "\n\nAtividade 06 - Matriz Identidade de ordem n" << endl;
+    int ordem;
+    cout << "Digite a ordem da matriz identidade: ";
+    cin >> ordem;
+    // Criando a matriz identidade
+    int matriz[ordem][ordem]; // Declaração da matriz
+    for (int i = 0; i < ordem; i++) {
+        for (int j = 0; j < ordem; j++) {
+            if (i == j) {
+                matriz[i][j] = 1; // Elementos da diagonal principal são 1
+            } else {
+                matriz[i][j] = 0; // Demais elementos são 0
+            }
+            cout << matriz[i][j] << " ";
+        }
+        cout << endl;
+    }
 
     return 0;
 }

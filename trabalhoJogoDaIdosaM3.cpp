@@ -5,58 +5,96 @@ using namespace std;
 
 int main()
 {   
-    int vez = 0;
+    char matriz [3][3] = {{' ',' ',' '},
+                          {' ',' ',' '},
+                          {' ',' ',' '}};
     
-    
-    char matriz [3][3] ={ {' ',' ',' '},
-                         {' ',' ',' '},
-                         {' ',' ',' '}};
-    
-    int reveladas [3][3] ={ {'0','0','0'},
-                         {'0','0','0'},
-                         {'0','0','0'}};
+    int reveladas [3][3] = {{0,0,0},
+                            {0,0,0},
+                            {0,0,0}};
 
     
-    bool jogoEncerrou =  true;
-    int linha, coluna;
-    char escolha;
+    bool venceu =  false;
+    int linha, coluna, turno = 0, contagem = 0;
+    char jogadorAtual= 'X';
     
     cout << "---> JOGO DA VELHA <---" << endl;
     
-    for (int i =0; i<9; i++){
-    cout << "\nSelecione a sua jogada: (linha e coluna) "<< endl;
-    cin >> linha >> coluna;
-    cout << "Coordenadas: " <<linha <<"x" << coluna << endl;
-    cout << "Escolha X ou O: ";
-    cin >> escolha;
-    matriz[linha - 1][coluna - 1] = escolha;
-    reveladas[linha - 1][coluna - 1] = 1;
-    
-      for (int i =0; i<3; i++){
-        cout << "\n";
-            for (int j=0; j<3; j++){
-                cout << "|" << matriz [i][j]<< "|";
-            }
-    }
-    
-    for (int i =0; i<3; i++){
-        for (int j =0; j <3; j ++){
-            if(reveladas[i][j] == 0) {
-                jogoEncerrou == false;
-            }
+    while(!venceu&&contagem<9){
+        cout << "\nVez do Jogador " << jogadorAtual << endl;
+        cout << "Selecione a sua jogada (linha coluna de 1 a 3): "<< endl;
+        cin >> linha >> coluna;
+        while (linha < 1 || linha > 3 || coluna < 1 || coluna > 3 || reveladas[linha-1][coluna-1] != 0){
+            cout << "Posição " << linha << "x" << coluna << " inválida ou já escolhida" << endl;
+            cout << "Selecione a sua jogada (linha coluna de 1 a 3): "<< endl;
+            cin >> linha >> coluna;
         }
-    }
-    
-    }
-        
-        cout << "\nAcabou o jogo" << endl;
+        cout << "Coordenadas: " <<linha <<"x" << coluna << endl;
+        matriz[linha - 1][coluna - 1] = jogadorAtual;
+        reveladas[linha - 1][coluna - 1] = 1;
+
         for (int i =0; i<3; i++){
-        cout << "\n";
+            cout << "\n";
             for (int j=0; j<3; j++){
                 cout << "|" << matriz [i][j]<< "|";
             }
         }
-        exit(EXIT_SUCCESS);
+        
+            for (int i = 0; i<3; i++){ 
+                if (matriz[i][0] == jogadorAtual && 
+                    matriz[i][1] == jogadorAtual && 
+                    matriz[i][2] == jogadorAtual){
+                    venceu = true;
+                    
+                    
+                }
+            }
+                
+            for (int j = 0; j<3; j++){ 
+                if (matriz[0][j] == jogadorAtual && 
+                    matriz[1][j] == jogadorAtual && 
+                    matriz[2][j] == jogadorAtual){
+                    venceu = true;
+                    
+                    
+                }
+            }
+            
+            if (matriz[0][0]==jogadorAtual && matriz[1][1]== jogadorAtual && matriz [2][2]==jogadorAtual){
+                venceu = true;
+                
+                
+            }
+            if (matriz[2][0]==jogadorAtual && matriz[1][1]== jogadorAtual && matriz [0][2]==jogadorAtual){
+                venceu = true;
+                
+                
+            }
+
+        if (turno == 0 && contagem<8 && (!venceu)){
+            jogadorAtual = 'O';
+            turno ++;
+        }
+        else if(turno != 0 && contagem<8 && (!venceu)){
+            jogadorAtual = 'X';
+            turno --;
+        }
+        contagem ++;
+    }
     
+    cout << "\nAcabou o jogo" << endl;
+    for (int i =0; i<3; i++){
+    cout << "\n";
+        for (int j=0; j<3; j++){
+            cout << "|" << matriz [i][j]<< "|";
+        }
+    }
+    if (venceu){
+        cout << "\nJogador " << jogadorAtual << " venceu" << endl;
+    }
+    else{
+        cout << "\nDeu velha" << endl;
+    }
+       
     return 0;
 }

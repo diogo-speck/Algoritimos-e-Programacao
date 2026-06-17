@@ -2,17 +2,13 @@
 using namespace std;
 #include <cmath>
 #include <cstdlib>
+#include <limits>
 
 int main()
 {   
     char matriz [3][3] = {{' ',' ',' '},
                           {' ',' ',' '},
                           {' ',' ',' '}};
-    
-    int reveladas [3][3] = {{0,0,0},
-                            {0,0,0},
-                            {0,0,0}};
-
     
     bool venceu =  false;
     int linha, coluna, contagem = 0;
@@ -24,18 +20,21 @@ int main()
         cout << "\nVez do Jogador " << jogadorAtual << endl;
         cout << "Selecione a sua jogada (linha coluna de 1 a 3): "<< endl;
         cin >> linha >> coluna;
-        while (linha < 1 || linha > 3 || coluna < 1 || coluna > 3 || reveladas[linha-1][coluna-1] != 0){
-            cin.clear(); // limpa o estado de erro
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // descarta o resto da linha
-            cout << "Posição " << linha << "x" << coluna << " inválida ou já escolhida" << endl;
+        if (!cin) { // se a leitura falhar
+            cin.clear(); // limpa o "scanner"
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // descarta tudo no buffer até o próximo \n
+            cout << "Entrada inválida, digite números de 1 a 3: " << endl;
+
+            continue;
+        }
+        if (linha < 1 || linha > 3 || coluna < 1 || coluna > 3 || matriz[linha-1][coluna-1] != ' '){
+            cout << "Posição " << linha << "x" << coluna << " já escolhida" << endl;
             cout << "Selecione a sua jogada (linha coluna de 1 a 3): "<< endl;
-            cin >> linha >> coluna;
+            continue;
         }
         cout << "Coordenadas: " <<linha <<"x" << coluna << endl;
         matriz[linha - 1][coluna - 1] = jogadorAtual;
-        reveladas[linha - 1][coluna - 1] = 1;
-        contagem ++;
-
+        
         for (int i =0; i<3; i++){
             cout << "\n";
             for (int j=0; j<3; j++){
@@ -63,13 +62,13 @@ int main()
             venceu = true; 
         }
 
-        if (jogadorAtual == 'X' && contagem<9 && (!venceu)){
+        if (jogadorAtual == 'X' && contagem<8 && (!venceu)){
             jogadorAtual = 'O';
         }
-        else if(jogadorAtual == 'O' && contagem<9 && (!venceu)){
+        else if(jogadorAtual == 'O' && contagem<8 && (!venceu)){
             jogadorAtual = 'X';
         }
-        
+        contagem ++;
     }
     
     cout << "\nAcabou o jogo" << endl;

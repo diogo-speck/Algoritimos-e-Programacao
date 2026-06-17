@@ -1,8 +1,8 @@
 #include <iostream>
-using namespace std;
 #include <cmath>
 #include <cstdlib>
 #include <limits>
+using namespace std;
 
 int main()
 {   
@@ -20,9 +20,9 @@ int main()
         cout << "\nVez do Jogador " << jogadorAtual << endl;
         cout << "Selecione a sua jogada (linha coluna de 1 a 3): "<< endl;
         cin >> linha >> coluna;
-        if (!cin) { // se a leitura falhar
-            cin.clear(); // limpa o "scanner"
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // descarta tudo no buffer até o próximo \n
+        if (!cin) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Entrada inválida, digite números de 1 a 3: " << endl;
 
             continue;
@@ -85,5 +85,6 @@ int main()
         cout << "\nDeu velha" << endl;
     }
        
+    
     return 0;
 }

@@ -27,9 +27,10 @@ public static void main(String[] args) {
     Right: 12
     Down: 19
 
-    esquerda -1
-    direita +1
-    baixo +n
+    esquerda j-1
+    direita j+1
+    baixo n+1
+    cima n-1
     */
    
     Random aleatorio = new Random();
@@ -54,17 +55,17 @@ public static void main(String[] args) {
                 if (matriz[i][j]==num){
                     contador+=1;
                     System.out.print("\n"+num+" está na posição "+(i+1)+"x"+(j+1));
-                    if (i>0){ 
-                        System.out.print(" e a sua esquerda está o "+matriz[i-1][j]);
+                    if (j>0){ 
+                        System.out.print(" e a sua esquerda está o "+matriz[i][j-1]);
                     }
-                    if (i<n-1){ 
+                    if (i<m-1){ 
                         System.out.print(" e em baixo está o "+matriz[i+1][j]);
                     }
-                    if (j<m-1){ 
+                    if (j<n-1){ 
                         System.out.print(" e a direita está o "+matriz[i][j+1]);
                     }
-                    else{
-                        System.out.println("\n"+num+" está em uma posição impossível");
+                    if (i>0) {
+                        System.out.print(" e em cima está o "+matriz[i-1][j]);
                     }
                 }
             }

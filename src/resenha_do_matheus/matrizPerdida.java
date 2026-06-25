@@ -71,10 +71,6 @@ public static void main(String[] args) {
             }
     }
     System.out.println("\nTiveram "+contador+" números "+num);
-    
-    
-
-   
 
     sc.close();
 }

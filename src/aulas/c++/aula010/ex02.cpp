@@ -6,7 +6,7 @@ int main() {
     float medida = 0;
     char tipo = ' ';
 
-    cout << "Conversão de unidades com if-else" << endl;
+    cout << "Conversão de unidades com switch case" << endl;
     cout << "Digite uma medida no padrão centímetros ou polegadas (ex. 25.7 c / 13.9 p):" << endl;
     cin >> medida >> tipo;
     switch (tipo)

@@ -20,7 +20,7 @@ using namespace std; // para não precisar usar std::
 
 int main() {
     // Configura o locale para o padrão do sistema (ex.: português do Brasil)
-    std::setlocale(LC_ALL, ""); // poderia ser std::setlocale(LC_ALL, "pt_BR.UTF-8");
+    std::setlocale(LC_ALL, "pt_BR.UTF-8"); // "" padrão do sistema
     std::cout<<"Oi user" << endl;
     
     int idade;
@@ -182,7 +182,7 @@ int main() {
     }
 
     cout << "\n\nAtividade 06 - Matriz Identidade de ordem n" << endl;
-    int ordem;
+    int ordem = 0;
     cout << "Digite a ordem da matriz identidade: ";
     cin >> ordem;
     // Criando a matriz identidade

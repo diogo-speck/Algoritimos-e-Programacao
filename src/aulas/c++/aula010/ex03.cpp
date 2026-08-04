@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 int main() {
@@ -9,7 +10,7 @@ int main() {
     
     while(c<123){
         letra = c;
-        cout << "Caractere: " << letra << " | Valor inteiro: " << c << endl;
+        cout << "Caractere: " << letra << " | Valor inteiro: " << setw(3) << setfill('0') <<c << endl;
         c++;
     }
 

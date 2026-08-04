@@ -42,10 +42,13 @@ int main(){
     cin >> salario;
     cout << "Se deseja encerrar sua conta digite \"0\": " << endl;
     cin >> ativo;
-    ativo != 0 ? ativo = 1 : ativo = 0; // Condicional composta ternária ((expressão booleana) ? código 1 [if] : código 2 [else]; )
+    ativo != 0 ? ativo = 1 : ativo = 0; 
+    // Condicional composta ternária ((expressão booleana) ? código 1 [if] : código 2 [else];)
     // cout << ativo << endl;
     cout << fixed << setprecision(2); // formata 2 casas decimais depois da vírgula
-    cout << "Seu nome é "+nome+", você tem "+ to_string(idade) +" anos de idade, se identifica com o sexo \"" << sexo << "\", tem " << altura << "m de altura, seu salário mensal é R$" << salario << " e você optou por deixar sua conta ";
+    cout << "Seu nome é "+nome+", você tem "+ to_string(idade) +" anos de idade,"
+    " se identifica com o sexo \"" << sexo << "\", tem " << altura << "m de altura,"
+    "\nseu salário mensal é R$" << salario << " e você optou por deixar sua conta ";
     ativo != 0 ? cout << "ativa" : cout << "desativada";
     cout << endl;
 

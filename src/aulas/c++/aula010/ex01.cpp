@@ -3,6 +3,7 @@ using namespace std;
 
 int main() {
     
+    // 1 polegada = 2,54 centímetros
     float medida = 0;
     char tipo = ' ';
 
@@ -20,8 +21,5 @@ int main() {
     }
     
 
-    // 1 polegada = 2,54 centímetros
-
-    
     return 0;
 }

@@ -55,8 +55,8 @@ int main() {
         j = (j+1)%8;
     }
 
-    for (int i=0; i<size(tabuleiro); i++){
-        for (int j=0; j<size(tabuleiro[0]); j++){ // Melhor para matrizes quadradas
+    for (int i=0; i<8; i++){
+        for (int j=0; j<8; j++){ // Melhor para matrizes quadradas
             cout << " | " << scientific << setprecision(3) << tabuleiro[i][j] << " | "; // Notação científica com 4 casas decimais
         }
         cout << "\n" << endl;

@@ -19,7 +19,6 @@ int main(){
     while(escolha!='S'){
         exibirMenu();
         escolha = lerOpcao();
-        exibirResultado(resultado);
     }
     cout << "\nSaindo...";
 
@@ -39,22 +38,24 @@ void exibirMenu(){
 char lerOpcao(){
     char c;
     cin >> c;
+    c = toupper(c);
     double valor1, valor2;
-    valor1 = lerNumero();
-    valor2 = lerNumero();
+    if (c!='S'){
+        valor1 = lerNumero();
+        valor2 = lerNumero();
+    }
     switch (c)
     {
-    case 1:
+    case '1':
         somar(valor1,valor2);
         return '1';
-    case 2:
+    case '2':
         subtrair(valor1,valor2);
         return '2';
-    case 3:
+    case '3':
         multiplicar(valor1,valor2);
         return '3';
-        break;
-    case 4:
+    case '4':
         dividir(valor1,valor2);
         return '4';
     case 'S':
@@ -92,7 +93,8 @@ bool divisaoValida(double divisor){
 }
 double dividir(double a, double b){
     if (divisaoValida(b)){
-        return a+b;
+        exibirResultado(a/b);
+        return a/b;
     }else{
         cout << "\nDivisão por 0";
         return 0;

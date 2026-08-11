@@ -15,21 +15,16 @@ int main() {
     cout << "Quantidade mínima de casas para:\n" << endl;
 
     
-    for (graos; graos<1000; graos = graos*2){
-        cout << graos << " grãos | " << c << " | (" << 2*graos-1 << ")" << endl;
-        c++;
-    }
-    cout << "\n1.000 grãos - " << c << "\n" << endl;
-    
-    
-    for (graos; graos<1000000; graos = graos*2){
-        cout << graos << " grãos | " << c << " | (" << 2*graos-1 << ")" << endl;
-        c++;
-    }
-    cout << "\n1.000.000 grãos - " << c << "\n" << endl;
-    
-    
     for (; graos<1000000000; graos = graos*2){ // sem o graos; só com ; indica que não inicializa
+        if(c==11){
+            cout << "\n1.000 grãos - " << c << "\n" << endl;
+        }
+        if(c==21){
+            cout << "\n1.000.000 grãos - " << c << "\n" << endl;
+        }
+        if(c==32){
+            cout << "\n1.000.000.000 grãos - " << c << "\n" << endl;
+        }
         cout << graos << " grãos | " << c << " | (" << 2*graos-1 << ")" << endl;
         c++;
     }
@@ -45,7 +40,7 @@ int main() {
     for (graos; c<65; graos = graos*2){
         //cout << graos << " grãos | " << c << " | (" << 2*graos-1 << ")" << endl;
         if (c==64){
-            graos--; // Tirei 1 unidade para não dar Overflow
+            graos--; // Tirei 1 unidade para não dar Overflow, poderia ser unsigned long long
         }
         tabuleiro[i][j] = graos;
         c++;

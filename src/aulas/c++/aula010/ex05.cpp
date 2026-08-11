@@ -43,6 +43,8 @@ int main() {
 
     cout << endl;
 
+    cout << "Primos encontrados: " << tamanho;
+
     delete[] vetor;
     return 0;
 }

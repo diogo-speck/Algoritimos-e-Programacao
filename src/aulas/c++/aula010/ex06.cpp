@@ -8,13 +8,13 @@ int main() {
     default_random_engine gerador(rd());
     uniform_int_distribution<int> distribuicao(1,100);
     
-    int m, n, num, c;
+    int m=0, n=0, num=0, c=0;
 
     cout << "Localizando vizinhos em uma matriz" << endl;
     cout << "Digite um valor para o M (quantidade de linhas) e N (quantidade de colunas) de uma matriz (ex. 3 3): " << endl;
     cin >> m >> n;
     
-    int matriz [m][n];
+    int matriz[m][n];
 
     cout << "Matriz gerada:" << endl;
     for (int i=0; i<m;i++){

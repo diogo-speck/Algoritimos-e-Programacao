@@ -1,36 +1,36 @@
 #include <iostream>
+#include <cctype>
 
 using namespace std;
 
 void exibirEstacionamento(const int (&estacionamento)[4][5]);
-bool vagaValida(int vaga, const int (&estacionamento)[4][5]);
+bool vagaValida(int vaga);
 bool ocuparVaga(int vaga, int (&estacionamento)[4][5]);
 bool liberarVaga(int vaga, int (&estacionamento)[4][5]);
 int contarVagasLivres(const int (&estacionamento)[4][5]); // v1
-int contarVagasLivres(int vaga, const int (&estacionamento)[4][5]); // v2 (fileiras)
+int contarVagasLivres(int vaga, char fileira, const int (&estacionamento)[4][5]); // v2 (fileiras)
 
 int main()
 {
     bool ativo = true;
-    int vaga, linha, coluna, contador=0;
+    int vaga;
+    char fileira;
     cout << "Controle de Vagas de um Estacionamento" << endl;
     //cin.get(); Pede enter para o user
-    int estacionamento[4][5]{};
+    int estacionamento[4][5];
 
-
-    for (int i; i<4; i++){
-        for (int j; j<5; j++){
+    for (int i=0; i<4; i++){
+        for (int j=0; j<5; j++){
             estacionamento[i][j] = 0;
-            cout << estacionamento[i][j] << " ";
         }
-        cout << endl;
     }
+
 
     while(ativo){
 
-        int escolha = 0, vaga;
+        int escolha = 0;
 
-        cout << "Funcionalidades: " << endl;
+        cout << "\nFuncionalidades: " << endl;
         cout << "1 - Visualizar o estacionamento" << endl;
         cout << "2 - Ocupar uma vaga" << endl;
         cout << "3 - Liberar uma vaga" << endl;
@@ -48,31 +48,39 @@ int main()
             case 2:
                 cout << "Digite a vaga: ";
                 cin >> vaga;
-                if (vagaValida(vaga, estacionamento)){
+                if (vagaValida(vaga)){
                     ocuparVaga(vaga, estacionamento);
                 }else{
-                    cout << "Vaga inv�lida" << endl;
+                    cout << "Vaga inválida" << endl;
                 }
                 break;
             case 3:
                 cout << "Digite a vaga: ";
                 cin >> vaga;
-                if (vagaValida(vaga, estacionamento)){
+                if (vagaValida(vaga)){
                     liberarVaga(vaga, estacionamento);
                 }else{
-                    cout << "Vaga inv�lida" << endl;
+                    cout << "Vaga inválida" << endl;
                 }
                 break;
             case 4:
                 cout << "Vagas livres no estacionamento: " << contarVagasLivres(estacionamento) << endl;
                 break;
             case 5:
-                cout << "Digite a vaga: ";
-                cin >> vaga;
-                if (vagaValida(vaga, estacionamento)){
-                    cout << "Vagas livres adjacentes: " << contarVagasLivres(vaga, estacionamento) << endl;
+                cout << "Digite a fileira (ex. c1 para a coluna 1): ";
+                cin >> fileira >> vaga;
+                fileira = tolower(fileira);
+                if (fileira == 'c'){ // Coluna
+                    vaga*=4;
+                }else if (fileira == 'l'){ // Linha
+                    vaga*=5;
                 }else{
-                    cout << "Vaga inv�lida" << endl;
+                    vaga=25;
+                }
+                if (vagaValida(vaga)){
+                    cout << "Vagas livres na fileira: " << contarVagasLivres(vaga, fileira, estacionamento) << endl;
+                }else{
+                    cout << "Vaga inválida" << endl;
                 }
                 break;
             case 6:
@@ -80,7 +88,7 @@ int main()
                 ativo = false;
                 break;
             default:
-                cout << "Op��o inv�lida" << endl;
+                cout << "Opção inválida" << endl;
                 break;
         }
     }
@@ -89,8 +97,8 @@ int main()
 }
 
 void exibirEstacionamento(const int (&estacionamento)[4][5]){
-    for (int i; i<4; i++){
-        for (int j; j<5; j++){
+    for (int i=0; i<4; i++){
+        for (int j=0; j<5; j++){
             cout << estacionamento[i][j] << " ";
         }
         cout << endl;
@@ -98,63 +106,42 @@ void exibirEstacionamento(const int (&estacionamento)[4][5]){
 
 }
 
-bool vagaValida(int vaga, const int (&estacionamento)[4][5]){
-    if (vaga>0&&vaga<21){
-        return true;
-    }else{
-        return false;
-    }
+bool vagaValida(int vaga){
+    return vaga>0&&vaga<21;
 }
 
 bool ocuparVaga(int vaga, int (&estacionamento)[4][5]){
-    vaga--;
-    for (int i; i<4; i++){
-        for (int j; j<5; j++){
-            if (vaga == 0){
-                if (estacionamento[i][j] == 0){
-                    estacionamento[i][j] == 1;
-                    cout << "Voc� ocupou a vaga " << vaga << endl;
-                    return true;
-                }else{
-                    cout << "Vaga " << vaga << " j� ocupada!" << endl;
-                    return false;
-            }
-            }else{
-                vaga--;
-            }
-        }
+    int linha = (vaga- 1) / 5;
+    int coluna = (vaga- 1) % 5;
+    
+    if (estacionamento[linha][coluna] == 0){
+        estacionamento[linha][coluna] = 1;
+        cout << "Você ocupou a vaga " << vaga << endl;
+        return true;
+    }else{
+        cout << "Vaga " << vaga << " já ocupada!" << endl;
     }
+    return false;
 }
 
-/*
-    linha = (vaga- 1) / 5;
-    coluna = (vaga- 1) % 5;
-*/
-
 bool liberarVaga(int vaga, int (&estacionamento)[4][5]){
-    vaga--;
-    for (int i; i<4; i++){
-        for (int j; j<5; j++){
-            if (vaga == 0){
-                if (estacionamento[i][j] == 0){
-                    cout << "Vaga " << vaga << " j� estava liberada!" << endl;
-                    return true;
-                }else{
-                    cout << "Voc� liberou a vaga " << vaga << endl;
-                    estacionamento[i][j] == 0;
-                    return false;
-            }
-            }else{
-                vaga--;
-            }
-        }
+    int linha = (vaga- 1) / 5;
+    int coluna = (vaga- 1) % 5;
+    
+    if (estacionamento[linha][coluna] == 1){
+        cout << "Você liberou a vaga " << vaga << endl;
+        estacionamento[linha][coluna] = 0;
+        return true;
+    }else{
+        cout << "Vaga " << vaga << " já estava liberada!" << endl;
     }
+    return false;
 }
 
 int contarVagasLivres(const int (&estacionamento)[4][5]){ //v1
     int contador=0;
-    for (int i; i<4; i++){
-        for (int j; j<5; j++){
+    for (int i=0; i<4; i++){
+        for (int j=0; j<5; j++){
             if (estacionamento[i][j] == 0){
                 contador++;
             }
@@ -163,26 +150,27 @@ int contarVagasLivres(const int (&estacionamento)[4][5]){ //v1
     return contador;
 }
 
-int contarVagasLivres(int vaga, const int (&estacionamento)[4][5]){ // v2 (fileiras)
-    int contador=0, linha, coluna;
-    for (int i; i<4; i++){
-        for (int j; j<5; j++){
-            if (vaga == 0){
-                linha = i;
-                coluna = j;
-            }else{
-                vaga--;
+int contarVagasLivres(int vaga, char fileira, const int (&estacionamento)[4][5]){ // v2 (fileiras)
+    int contador=0;
+    if (fileira == 'c'){ // Coluna
+        fileira = (vaga/4)-1;
+        for (int i=0; i<4; i++){
+            for (int j=0; j<5; j++){
+                if (j == fileira && estacionamento[i][j]==0){
+                    contador++;
+                }
+            }
+        }
+    }else{ // Linha
+        fileira = (vaga/5)-1;
+        for (int i=0; i<4; i++){
+            for (int j=0; j<5; j++){
+                if (i == fileira && estacionamento[i][j]==0){
+                    contador++;
+                }
             }
         }
     }
-
-    for (int i; i<4; i++){
-        for (int j; j<5; j++){
-            if (i==linha || j==coluna){
-                contador++;
-            }
-        }
-    }
-
+    
     return contador;
 }

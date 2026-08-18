@@ -1,3 +1,6 @@
 oracleJDK-26/
 oracleJdk-26/legal/java.desktop/colorimaging.md
+package-lock.json
+node
+node_modules
 *.exe

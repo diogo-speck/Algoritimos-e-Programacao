@@ -1,0 +1,29 @@
+{
+  "name": "algoritimos-e-programacao",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diogo-speck/Algoritimos-e-Programacao.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/diogo-speck/Algoritimos-e-Programacao/issues"
+  },
+  "homepage": "https://github.com/diogo-speck/Algoritimos-e-Programacao#readme",
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "is-even": "^1.0.0",
+    "is-odd": "^3.0.1",
+    "is-ten": "^0.1.0",
+    "tsx": "^4.23.12"
+  }
+}

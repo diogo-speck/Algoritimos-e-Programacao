@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/diogo-speck/Algoritimos-e-Programacao#readme",
   "devDependencies": {
+    "@types/node": "^18.19.130",
     "typescript": "^7.0.2"
   },
   "dependencies": {

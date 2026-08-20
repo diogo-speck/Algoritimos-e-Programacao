@@ -28,4 +28,9 @@ terminal.question("Digite seu nome: ", (nome) =>{ // interface no terminal
   terminal.close();
 }); // fechando o callback
 
+
+
+
+
+
 // executar usando o comando: npx tsx "src\aulas\TypeScript\main.ts"

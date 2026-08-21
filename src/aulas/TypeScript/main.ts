@@ -47,7 +47,7 @@ let hex: number = 0xf00d; // Hexadecimal
 let binary: number = 0b1010; // Binary
 let octal: number = 0o744; // Octal
 let float: number = 3.14; // Floating point
-let scientific: number = 2^16; // Scientific Notation
+let scientific: number = 2**16; // Scientific Notation
 
 // O tipo String pode ser definido com "" '' ``(backticks)
 let color: string = "blue";

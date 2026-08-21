@@ -1,6 +1,4 @@
 #include <iostream>
-#include <cctype>
-
 using namespace std;
 
 template <typename T>
@@ -44,15 +42,6 @@ int main()
             estacionamento[i][j] = 0;
         }
     }
-
-    /*
-    for(int i = 0; i < m; ++i) {
-        for(int j = 0; j < n; ++j) {
-            cout << estacionamento[i][j] << " ";
-        }
-        cout << endl;
-    }
-    */
 
 
     while(ativo){
@@ -184,23 +173,20 @@ int contarVagasLivres(int ** (&estacionamento), T (&m), T (&n)){ //v1
     return contador;
 }
 
-template <typename T> // Refazer
+template <typename T>
 int contarVagasLivres(T vaga, int ** (&estacionamento), T (&m), T (&n)){ // v2 (linha)
     int linha = (vaga - 1) / n;
     int contador = 0;
 
-    for (int j = 0; j < n; j++) {
-        if (estacionamento[linha][j] == 0) {
-            contador++;
+    for (int i=0; i<m; i++){
+        for (int j=0; j<n; j++){
+            if (estacionamento[i][j] == 0 && i == linha){
+                contador++;
+            }
+            if (i>linha){
+                break;
+            }
         }
-    }
-
-    // Se a própria vaga estiver livre
-    if (estacionamento[linha][(vaga - 1) % n] == 0) {
-        contador++;
-    }
-    if (estacionamento[linha][(vaga - 1) % n] == 1) {
-        contador--;
     }
 
     return contador;

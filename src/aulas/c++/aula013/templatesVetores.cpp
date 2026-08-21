@@ -11,6 +11,10 @@ int maiorValor(int * (&vetor), int (&linhas));
 
 int maiorValor(int ** (&matriz), int (&linhas), int (&colunas));
 
+void preencherVetor(int * (&vetor), int (&linhas));
+
+void preencherVetor(int ** (&matriz), int (&linhas), int (&colunas));
+
 
 int main(){
 
@@ -20,6 +24,9 @@ int main(){
 
     if (colunas <= 1){
         colunas = 1;
+    }
+    if (linhas <= 1){
+        linhas = 1;
     }
 
     
@@ -41,21 +48,21 @@ int main(){
         for(int j = 0; j < colunas; ++j) {
             matriz[i][j] = 0;
         }
-    }
-
-    cout << endl;
+    }    
+    
 
     if (colunas == 1){
+        preencherVetor(vetor, linhas);
+        cout << endl;
         imprimirVetor(vetor, linhas);
-        cout << "Maior valor: " << maiorValor(vetor, linhas) << endl;
+        cout << "\nMaior valor: " << maiorValor(vetor, linhas) << endl;
     }
     else{
+        preencherVetor(matriz, linhas, colunas);
+        cout << endl;
         imprimirVetor(matriz, linhas, colunas);
-        cout << "Maior valor: " << maiorValor(matriz, linhas, colunas) << endl;
+        cout << "\nMaior valor: " << maiorValor(matriz, linhas, colunas) << endl;
     }
-
-    
-    
 
 
 
@@ -110,4 +117,22 @@ int maiorValor(int ** (&matriz), int (&linhas), int (&colunas)){
         }
     }
     return maior;
+}
+
+void preencherVetor(int * (&vetor), int (&linhas)){
+    int valor;
+    for(int i = 0; i < linhas; i++){
+        cout << "\nValor para a posição " << i+1 << ": ";
+        cin >> valor;
+        vetor[i] = valor;
+    }
+}
+
+void preencherVetor(int ** (&matriz), int (&linhas), int (&colunas)){
+    for(int i = 0; i < linhas; i++){
+            for (int j = 0; j < colunas; j++){
+            cout << "\nValor para a posição " << i+1 << "x" << j+1 << ": ";
+            cin >> matriz[i][j]; // Compacto
+        }
+    }
 }

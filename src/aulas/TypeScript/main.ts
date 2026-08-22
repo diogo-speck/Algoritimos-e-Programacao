@@ -1,12 +1,12 @@
 /*
-Object Types
+W3Schools = Funções
 
 Pesquisar:
 
 entrada e saída de dados;
 tipos de dados;
-estruturas(if,else,for,for each,while,switch case, etc)
 funções
+estruturas(if,else,for,for each,while,switch case, etc)
 */
 
 import readline from "readline"; // Entrada de dados (precisa da biblioteca readline para criar uma interface no terminal)
@@ -17,7 +17,7 @@ if (0/2 === 0) { // Recomendado usar 3= para comparação de valor e tipo
     console.log(true)
   }
 
-const terminal = readline.createInterface({
+const terminal = readline.createInterface({ // Só se aplica a objetos, no caso instancia um quando chamada
   input: process.stdin,
   output: process.stdout
 });
@@ -115,15 +115,58 @@ let y: undefined = undefined;
 let z: null = null;
 
 interface User {
-  year?: number; // Same as `number | undefined`
+  year?: number; // Same as `number | undefined` (Union  (OR))
 }
 
 // Tuples (Typed Arrays)
 
-let tupla: [number, string, number, string];
+let tupla: [number | string, string, string | number, string]; // (Union  (OR))
 
-tupla = [3, "pratos de trigo para", 3, "tigres tristes"]; // Ordem importa
+tupla = [3, "pratos de trigo para", 3, "tigres tristes"]; // Ordem importa, poderia ser "três" no lugar do 3
 tupla.push('.'); // Não tem mais verificação, por isso é recomendado deixar readonly já que não são re-declaráveis
+
+// TypeScript Object Types similar to JSON (JavaScript Object Notation)
+
+const car: { type: string, mileage?: number } = { // atribuindo opcionalmente com undefined
+  type: "Toyota"
+};
+car.mileage = 2000;
+
+// Enum (string & numeric)
+
+enum CardinalDirections {
+  North = 0, // Redundante porque começa em 0, mas é mutável
+  East = "East",
+  South = 1,
+  West = 'W'
+}
+let currentDirection = CardinalDirections[0];
+// logs North
+console.log(currentDirection);
+currentDirection = CardinalDirections.West;
+// logs W
+console.log(currentDirection);
+
+// Interfaces
+
+interface Rectangle {
+  height: number,
+  width: number
+}
+
+interface ColoredRectangle extends Rectangle {
+  color: string
+}
+
+const coloredRectangle: ColoredRectangle = {
+  height: 20,
+  width: 10,
+  color: "red"
+};
+
+
+// Funções
+
 
 
 

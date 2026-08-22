@@ -46,3 +46,13 @@ console.log(eval("3 + 5"));
     
 const greetMe = "Diogo";
 console.log(`Olá ${greetMe}`);
+
+function add(a, b) {
+return a + b;
+}
+
+console.log(add("5", 3));
+
+let v = true; // any
+v = "string"; // no error as it can be "any" type
+Math.round(v); // no error as it can be "any" type 

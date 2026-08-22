@@ -1,5 +1,5 @@
 /*
-TypeScript Explicit Types and Inference
+Object Types
 
 Pesquisar:
 
@@ -63,6 +63,67 @@ const simbulo = {
   [uniqueKey]: "Muitos detalhes"
 };
 
+
+// Tipos especiais
+
+
+// Arrays
+let notas: number[] = [10, 9,5, 9,8];
+notas.push(7); // .append
+
+// Any
+
+const employe = {
+  name: "Alice",
+  age: 30,
+  employed: true
+}; 
+
+const data = JSON.parse('{ "name": "Alice", "age": 30 }'); // tipos diferentes -> any
+console.log(data)
+console.log(employe.name)
+
+// Unknown
+
+let w: unknown = 1;
+w = "string"; // no error
+w = {
+  runANonExistentMethod: () => {
+    console.log("I think therefore I am");
+  }
+}
+
+function processValue(value: unknown) {
+  if (typeof value === 'string') {
+    // value is now treated as string
+    console.log(value.toUpperCase());
+  } else if (Array.isArray(value)) {
+    // value is now treated as any[]
+    console.log(value.length);
+  }
+}
+
+// Never
+
+function throwError(message: string): never{
+  throw new Error(message);
+}
+
+// Undefined & null
+
+let y: undefined = undefined;
+let z: null = null;
+
+interface User {
+  year?: number; // Same as `number | undefined`
+}
+
+// Tuples (Typed Arrays)
+
+let tupla: [number, string, number, string];
+
+tupla = [3, "pratos de trigo para", 3, "tigres tristes"]; // Ordem importa
+tupla.push('.'); // Não tem mais verificação, por isso é recomendado deixar readonly já que não são re-declaráveis
 
 
 

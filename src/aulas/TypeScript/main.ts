@@ -1,14 +1,15 @@
 /*
-W3Schools = Funções
+W3Schools = TypeScript Basic Generics
 
 Pesquisar:
 
-entrada e saída de dados;
-tipos de dados;
-funções
 estruturas(if,else,for,for each,while,switch case, etc)
+entrada e saída de dados;
+funções
+tipos de dados;
 */
 
+import { isAbsolute } from "path";
 import readline from "readline"; // Entrada de dados (precisa da biblioteca readline para criar uma interface no terminal)
 
 console.log("Hello World")
@@ -16,17 +17,42 @@ console.log("Hello World")
 if (0/2 === 0) { // Recomendado usar 3= para comparação de valor e tipo
     console.log(true)
   }
+else{
+  console.log(false)
+}
 
-const terminal = readline.createInterface({ // Só se aplica a objetos, no caso instancia um quando chamada
-  input: process.stdin,
-  output: process.stdout
-});
+for (let i in [2,3]){ // for
+  console.log(i) // "0", "1"
+}
 
-terminal.question('Digite seu nome: ', (nome) =>{ // interface no terminal
-  // Recebe uma string na função .question e atribui a uma variável
-  console.log(`Seu nome é ${nome}`) // Saída de dados
-  terminal.close();
-}); // fechando o callback
+for (let i of [2,3]){ // for each
+  console.log(i) // 2, 3
+}
+
+var numbers = [1, 2, 3]; // array print
+for (let _i = 0; _i < numbers.length; _i++) {
+  var num = numbers[_i];
+  console.log(num);
+}
+
+let a: number = 1;
+while (a<5){
+  switch (a) {
+   case 1:
+       console.log("\nUm");
+       break;
+   case 2:
+       console.log("\nDois");
+       break;
+   case 3:
+       console.log("\nTrês");
+       break;
+   default: 
+       console.log("\nQuatro");
+       break;
+  }
+  a++;
+}
 
 
 var text = '{ "employees" : [' +
@@ -87,6 +113,7 @@ console.log(employe.name)
 
 let w: unknown = 1;
 w = "string"; // no error
+console.log(w as string); // Casting -> <string>w (react)
 w = {
   runANonExistentMethod: () => {
     console.log("I think therefore I am");
@@ -167,7 +194,60 @@ const coloredRectangle: ColoredRectangle = {
 
 // Funções
 
+function add(a:number=0, b:number=0, c?:number) {
+  return a + b + (c||0);
+}
 
+type absolute = (value:number) => number;
+
+const mod:absolute=(value)=> Math.abs(value);
+
+class Person{
+  private readonly name:string;
+  public constructor(name: string) {
+    this.name = name;
+  }
+
+  public getName(): string {
+    return this.name;
+  }
+
+  public toString(): string {
+    return `Name: ${this.getName}`;
+  }
+}
+const p1 = new Person("Jane");
+p1.getName();
+
+class id extends Person{ // implements se não tiver que usar o método construtor, extends para usar os atributos
+  public age: number; // por padrão é public
+
+  public constructor(name: string, age: number) {
+    super(name);
+    this.age = age;
+  }
+
+  public override toString(): string { // override é opcional, mas é uma boa pratica
+    return `${this.getName} (${this.age})`;
+  }
+}
+const p2 = new id("Diogo", 18);
+console.log(p2);
+
+
+
+
+
+const terminal = readline.createInterface({ // Só se aplica a objetos, no caso instancia um quando chamada
+  input: process.stdin,
+  output: process.stdout
+});
+
+terminal.question('Digite seu nome: \n', (nome) =>{ // interface no terminal
+  // Recebe uma string na função .question e atribui a uma variável
+  console.log(`Seu nome é ${nome}`) // Saída de dados
+  terminal.close();
+}); // fechando o callback
 
 
 // executar usando o comando: npx (node package executor) tsc (type script compiler) "src\aulas\TypeScript\main.ts"

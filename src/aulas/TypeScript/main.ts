@@ -1,5 +1,5 @@
 /*
-W3Schools = TypeScript Basic Generics
+W3Schools = TypeScript with React
 
 Pesquisar:
 
@@ -152,6 +152,8 @@ let tupla: [number | string, string, string | number, string]; // (Union  (OR))
 tupla = [3, "pratos de trigo para", 3, "tigres tristes"]; // Ordem importa, poderia ser "três" no lugar do 3
 tupla.push('.'); // Não tem mais verificação, por isso é recomendado deixar readonly já que não são re-declaráveis
 
+//const value: Exclude<typeof tupla, number> = true; removendo o tipo number da união
+
 // TypeScript Object Types similar to JSON (JavaScript Object Notation)
 
 const car: { type: string, mileage?: number } = { // atribuindo opcionalmente com undefined
@@ -175,10 +177,15 @@ currentDirection = CardinalDirections.West;
 console.log(currentDirection);
 
 // Interfaces
+// definem a estrutura/contrato que um objeto deve seguir
+// Diferente de uma classe, uma interface não é usada para instanciar objetos
 
 interface Rectangle {
   height: number,
-  width: number
+  width: number,
+  area?:{ // undefined
+    number: number;
+  }
 }
 
 interface ColoredRectangle extends Rectangle {
@@ -203,7 +210,7 @@ type absolute = (value:number) => number;
 const mod:absolute=(value)=> Math.abs(value);
 
 class Person{
-  private readonly name:string;
+  private readonly name:string; // dá erro se tentar redefinir readonly, mas em js compila sobrescrevendo
   public constructor(name: string) {
     this.name = name;
   }
@@ -213,13 +220,13 @@ class Person{
   }
 
   public toString(): string {
-    return `Name: ${this.getName}`;
+    return `Name: ${this.getName()}`;
   }
 }
 const p1 = new Person("Jane");
 p1.getName();
 
-class id extends Person{ // implements se não tiver que usar o método construtor, extends para usar os atributos
+class id extends Person{ // implements se não tiver que usar o método construtor (abstração), extends para usar os atributos (herança)
   public age: number; // por padrão é public
 
   public constructor(name: string, age: number) {
@@ -228,12 +235,36 @@ class id extends Person{ // implements se não tiver que usar o método construt
   }
 
   public override toString(): string { // override é opcional, mas é uma boa pratica
-    return `${this.getName} (${this.age})`;
+    return `${this.getName()} (${this.age})`;
   }
 }
 const p2 = new id("Diogo", 18);
 console.log(p2);
 
+function createPair<S, T>(v1: S, v2: T): [S, T] { // Template c++
+  return [v1, v2];
+}
+console.log(createPair<string, number>('hello', 42)); // ['hello', 42]
+
+
+// Record<string, number> = { [key: string]: number }
+
+// Null & Undefined
+/* 
+By default null and undefined handling is disabled, and can be enabled by setting strictNullChecks to true.
+*/
+
+let value: string | undefined | null = null;
+value = 'hello';
+value = undefined;
+
+function printMileage(mileage: number | null | undefined) {
+  console.log(`Mileage: ${mileage ?? 'Not Available'}`); // Operador lógico que verifica Nulidade
+  //console.log(`Mileage: ${!mileage}`); Verifica se não é null/undefined
+}
+
+printMileage(null); // Prints 'Mileage: Not Available'
+printMileage(0); // Prints 'Mileage: 0'
 
 
 
@@ -250,4 +281,5 @@ terminal.question('Digite seu nome: \n', (nome) =>{ // interface no terminal
 }); // fechando o callback
 
 
+// para configurar os tipos não declarados: npm install typescript @types/node --save-dev
 // executar usando o comando: npx (node package executor) tsc (type script compiler) "src\aulas\TypeScript\main.ts"

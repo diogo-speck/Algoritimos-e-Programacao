@@ -19,11 +19,16 @@
   },
   "homepage": "https://github.com/diogo-speck/Algoritimos-e-Programacao#readme",
   "devDependencies": {
+    "@types/express": "^5.0.6",
     "@types/node": "^18.19.130",
+    "nodemon": "^3.1.14",
+    "ts-node": "^10.9.2",
     "tsx": "^4.23.12",
     "typescript": "^7.0.2"
   },
   "dependencies": {
+    "body-parser": "^2.3.0",
+    "express": "^5.2.1",
     "is-even": "^1.0.0",
     "is-odd": "^3.0.1",
     "is-ten": "^0.1.0",

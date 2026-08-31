@@ -41,6 +41,6 @@ int buscarProduto(const Produto produtos[],int tamanho, int codigo){
             return i;
         }
     }
-    std::cout << "Produto NÃO encontrado";
+    std::cout << "Produto NÃO encontrado ";
     return -1;
 }

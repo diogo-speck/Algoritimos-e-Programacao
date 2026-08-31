@@ -19,7 +19,7 @@ int main(){
     int codigo;
     cout << "Digite um código de produto para procurar: ";
     cin >> codigo;
-    buscarProduto(produtos, 5, codigo);
+    cout << buscarProduto(produtos, 5, codigo);
 
     return 0;
 }

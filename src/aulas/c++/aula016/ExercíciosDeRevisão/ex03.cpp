@@ -1,14 +1,24 @@
 #include <iostream>
+#include <string>
 using namespace std;
+
+
+struct Livro { 
+    int codigo = -1; // por padrão livre
+    string titulo; 
+    string autor; 
+    int ano; 
+    bool disponivel;
+};
 
 // protótipos das funções
 void cadastrarLivro(Livro (&estante)[10], string titulo, string autor, int codigo, int ano);
-bool removerLivro(Livro (&estante)[10], int codigo);
-void exibirLivro(const Livro (&estante)[10]); 
-void exibirLivros(const Livro (&estante)[10], int codigo); 
-int buscarLivro(const Livro (&estante)[10], int codigo);
-bool emprestarLivro(Livro (&estante)[10], int codigo); 
-bool devolverLivro(Livro (&estante)[10], int codigo); 
+bool removerLivro(Livro (&estante)[10], int indice);
+void exibirLivros(const Livro (&estante)[10]); 
+void exibirLivro(const Livro (&estante)[10], int indice); 
+int buscarLivro(const Livro (&estante)[10]);
+bool emprestarLivro(Livro (&estante)[10], int indice); 
+bool devolverLivro(Livro (&estante)[10], int indice); 
 int totalDisponiveis(const Livro (&estante)[10]);
 
 
@@ -19,10 +29,10 @@ int main(){
     Livro estante[10];
     int escolha = 1;
     string titulo, autor;
-    int ano, codigo;
+    int ano, codigo, indice;
     
     while (escolha!=0){
-        cout << "1 - Cadastrar livro " << endl
+        cout << "\n1 - Cadastrar livro " << endl
             << "2 - Remover livro " << endl
             << "3 - Exibir livros " << endl
             << "4 - Exibir livro por código " << endl
@@ -36,9 +46,10 @@ int main(){
         {
         case 1:
             cout << "Insira o título do livro: ";
-            cin >> titulo;
+            cin.ignore(); // limpa o buffer
+            getline(cin, titulo);
             cout << "Insira o autor do livro: ";
-            cin >> autor;
+            getline(cin, autor);
             cout << "Insira o código do livro: ";
             cin >> codigo;
             cout << "Insira o ano de publicação do livro: ";
@@ -46,34 +57,37 @@ int main(){
             cadastrarLivro(estante, titulo, autor, codigo, ano);
             break;
         case 2:
-            codigo = buscarLivro(estante, codigo);
-            removerLivro(estante, codigo);
+            indice = buscarLivro(estante);
+            removerLivro(estante, indice);
             break;
         case 3:
-            exibirLivro(estante);
+            exibirLivros(estante);
             break;
         case 4:
-            codigo = buscarLivro(estante, codigo);
-            removerLivro(estante, codigo);
+            indice = buscarLivro(estante);
+            exibirLivro(estante, indice);
             break;
         case 5:
-            codigo = buscarLivro(estante, codigo);
-            if (emprestarLivro(estante, codigo)){
+            indice = buscarLivro(estante);
+            if (emprestarLivro(estante, indice)){
                 cout << "Livro emprestado" << endl;
             }else{
                 cout << "Não foi possível emprestar o livro" << endl;
             }
             break;
         case 6:
-            codigo = buscarLivro(estante, codigo);
-            if (devolverLivro(estante, codigo)){
+            indice = buscarLivro(estante);
+            if (devolverLivro(estante, indice)){
                 cout << "Livro devolvido" << endl;
             }else{
                 cout << "Não foi possível devolver o livro" << endl;
             }
             break;
         case 7:
-            cout << "Quantidade de livros cadastrados: " << totalDisponiveis(estante) << endl;
+            cout << "Quantidade de livros disponíveis: " << totalDisponiveis(estante) << endl;
+            break;
+        case 0:
+            cout << "Saindo..." << endl;
             break;
         
         default:
@@ -81,114 +95,106 @@ int main(){
         }
     }
     
-    
 
     return 0;
 }
 
 
 // definições das funções
-struct Livro { 
-    int codigo = -1; // por padrão livre
-    string titulo; 
-    string autor; 
-    int ano; 
-    bool disponivel = true; // por padrão livre
-};
-
 void cadastrarLivro(Livro (&estante)[10], string titulo, string autor, int codigo, int ano){
+    bool achou = false;
     for (int i=0; i<10; i++){
         if (estante[i].codigo == -1){
             estante[i].codigo = codigo;
             estante[i].titulo = titulo;
             estante[i].autor = autor;
             estante[i].ano = ano;
-            cout << "O livro '" << estante[i].titulo << "' foi cadastrado com código " << estante[i].codigo;
+            estante[i].disponivel = true;
+            cout << "\nO livro '" << estante[i].titulo << "' foi cadastrado com código " << estante[i].codigo;
+            achou = true;
+            break;
         }
+    }
+    if (!achou){
+        cout << "Estante cheia (10/10), remova algum livro para adicionar mais livros" << endl;
     }
 } 
 
-bool removerLivro(Livro (&estante)[10], int codigo){
+bool removerLivro(Livro (&estante)[10], int indice){
     /*
     A remoção será lógica: localize o livro pelo código e altere seu codigo para -1, 
     liberando novamente a posição.
     */
-   for (int i=0; i<10; i++){
-        if (estante[i].codigo == codigo && codigo != -1){
-            estante[i].codigo = -1;
-            cout << "O livro '" << estante[i].titulo << "' foi removido" << endl;
-            return true;
-        }
+    if (indice != -1 && estante[indice].codigo != -1){
+        estante[indice].codigo = -1;
+        cout << "O livro '" << estante[indice].titulo << "' foi removido" << endl;
+        estante[indice].titulo = "";
+        estante[indice].autor = "";
+        estante[indice].ano = 0;
+        estante[indice].disponivel = true;
+        return true;
     }
     cout << "Não foi possível remover o livro" << endl;
     return false;
 }
 
-void exibirLivro(const Livro (&estante)[10]){
+void exibirLivros(const Livro (&estante)[10]){
     // A exibição deverá ignorar posições com codigo == -1
     for (int i=0; i<10; i++){
         if (estante[i].codigo != -1){
-            cout << "(" << estante[i].codigo << ") '" << estante[i].titulo << "' - " << estante[i].autor << " - " << estante[i].ano << "' - Disonível: " << estante[i].disponivel << endl;
+            cout << "(" << estante[i].codigo << ") '" << estante[i].titulo << "' - " << estante[i].autor << " - " << estante[i].ano << "' - Disponível: " << estante[i].disponivel << endl;
         }
     }
 }
 
-void exibirLivros(const Livro (&estante)[10], int codigo){
+void exibirLivro(const Livro (&estante)[10], int indice){
     /*
     A consulta por código deverá apresentar os dados do livro ou informar que ele 
     não foi encontrado.
     */
-   bool achou = false;
-   for (int i=0; i<10; i++){
-        if (estante[i].codigo == codigo){
-            cout << "(" << estante[i].codigo << ") '" << estante[i].titulo << "' - " << estante[i].autor << " - " << estante[i].ano << "' - Disonível: " << estante[i].disponivel << endl;
-            achou = true;
-        }
-    }
-    if (!achou){
+    if (indice != -1 && estante[indice].codigo != -1){
+        cout << "(" << estante[indice].codigo << ") '" << estante[indice].titulo << "' - " << estante[indice].autor << " - " << estante[indice].ano << "' - Disponível: " << estante[indice].disponivel << endl;
+    }else{
         cout << "Não foi possível encontrar o livro" << endl;
     }
 } 
 
-int buscarLivro(const Livro (&estante)[10], int codigo){
+int buscarLivro(const Livro (&estante)[10]){
     /*
     A função de busca deverá receber um código e retornar o índice do livro na estante 
     ou -1 caso ele não seja encontrado.
     */
+    int codigo;
     cout << "Insira o código do livro: ";
     cin >> codigo;
    for (int i=0; i<10; i++){
-        if (estante[i].codigo == codigo && codigo != -1){
+        if (estante[i].codigo == codigo && estante[i].codigo != -1){
             return i;
         }
     }
     return -1;
 }
 
-bool emprestarLivro(Livro (&estante)[10], int codigo){
+bool emprestarLivro(Livro (&estante)[10], int indice){
     /*
     Um livro somente poderá ser emprestado se estiver cadastrado e disponível. 
     Após o empréstimo, disponivel = false
     */
-   for (int i=0; i<10; i++){
-        if (estante[i].codigo == codigo && estante[i].disponivel){
-            estante[i].disponivel = false;
-            return true;
-        }
+    if (indice != -1 && estante[indice].disponivel && estante[indice].codigo != -1){
+        estante[indice].disponivel = false;
+        return true;
     }
     return false;
 }
 
-bool devolverLivro(Livro (&estante)[10], int codigo){
+bool devolverLivro(Livro (&estante)[10], int indice){
     /*
     Um livro somente poderá ser devolvido se estiver cadastrado e emprestado. 
     Após a devolução, disponivel = true
     */
-   for (int i=0; i<10; i++){
-        if (estante[i].codigo == codigo && estante[i].disponivel){
-            estante[i].disponivel = true;
-            return true;
-        }
+    if (indice != -1 && !estante[indice].disponivel && estante[indice].codigo != -1){
+        estante[indice].disponivel = true;
+        return true;
     }
     return false;
 }
@@ -200,7 +206,7 @@ int totalDisponiveis(const Livro (&estante)[10]){
     */
    int total = 0;
    for (int i=0; i<10; i++){
-        if (estante[i].codigo != -1){
+        if (estante[i].codigo != -1 && estante[i].disponivel){
             total++;
         }
     }

@@ -1,6 +1,5 @@
-#ifndef main
-
 #include <stdio.h>
+#include <string>
 #include <stdlib.h>
 #include <iostream>
 
@@ -38,7 +37,7 @@ int main()
     num.b = 3.14f; // somente 1 valor, mas ocupa 1 único espaço
     std::cout << (num.a) << std::endl << (num.b)  << std::endl;
 
-    FILE *F = fopen("main.cpp", "r");
+    FILE *F = fopen("estudandoC.cpp", "r");
     
     if (F == NULL){
         std::cout << ("Não foi aberto") << std::endl;
@@ -51,17 +50,18 @@ int main()
     }else{
         std::cout << ("Ainda não terminou") << std::endl;
     }
+    fclose(F);
     
     // Alocação dinâmica com malloc invés de new
     char *nome;
-    nome = (char*) malloc(sizeof(char)); // bytes char = 1, int = 4...
+    nome = (char*) malloc(sizeof(char)*100); // bytes char = 1, int = 4...
     std::cout << ("Digite seu nome: ") << std::endl;
-    gets(nome);
+    // invés de std::getline mas pode dar buffer overflow
+    fgets(nome, 100, stdin);
     std::cout << ("Seu nome: ") << nome << std::endl;
     //nome++;
     //std::cout << nome << std::endl;
     
+    
     return 0;
 }
-
-#endif

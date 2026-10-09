@@ -12,5 +12,5 @@ int main() {
     CloseWindow();
 }
 
-// precisa ter o nome main.cpp para compilar
-// gcc -o main.exe main.cpp -Iinclude -Llib -lraylib -lgdi32 -lwinmm
+// estando no mesmo dir
+// g++ -o teste.exe teste.cpp -Iraylib/include -Lraylib/lib -lraylib -lgdi32 -lwinmm

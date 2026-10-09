@@ -1,15 +1,10 @@
-*
-!*/
-!*.*
-
-oracleJDK-26/
-node_modules/
-src/aulas/TypeScript/dist/
-/src/aulas/TypeScript/package-lock.json
-
 *.exe
 *.gguf
 *.class
+
+*.o
+build/
+.vscode/.browse.VC.db*
 
 raylib-6.0_win64_mingw-w64
 w64devkit

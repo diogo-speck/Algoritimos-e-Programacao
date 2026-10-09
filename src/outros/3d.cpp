@@ -191,4 +191,4 @@ int main(void)
     return 0;
 }
 
-// gcc -o main.exe main.cpp -Iinclude -Llib -lraylib -lgdi32 -lwinmm
+// g++ -o 3d.exe 3d.cpp -Iraylib/include -Lraylib/lib -lraylib -lgdi32 -lwinmm

@@ -1,3 +1,4 @@
+
 {
     "version": "2.0.0",
     "tasks": [
@@ -6,17 +7,19 @@
             "label": "Compilar Raylib",
             "command": "C:/Users/8640416/Downloads/Prog/Algoritimos-e-Programacao/w64devkit/bin/g++.exe",
             "args": [
+                "-g",
                 "-o",
-                "${workspaceFolder}/game.exe",
-                "${workspaceFolder}/main.cpp",
-                "-I${workspaceFolder}/include",
-                "-L${workspaceFolder}/lib",
+                "${workspaceFolder}/src/${fileBasenameNoExtension}.exe",
+                "${file}",
+                "-I${workspaceFolder}/src/raylib/include",
+                "-L${workspaceFolder}/src/raylib/lib",
                 "-lraylib",
                 "-lgdi32",
-                "-lwinmm"
+                "-lwinmm",
+                "-lopengl32"
             ],
             "options": {
-                "cwd": "${workspaceFolder}"
+                "cwd": "${workspaceFolder}/src"
             },
             "group": {
                 "kind": "build",

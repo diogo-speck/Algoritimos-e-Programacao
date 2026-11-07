@@ -1,0 +1,8 @@
+Alimentacao 150.50
+Transporte 80
+Lazer 120
+Internet 119.9
+Farmácia 0
+Luz 113.57
+Cinema 29.6
+Compra 63.1

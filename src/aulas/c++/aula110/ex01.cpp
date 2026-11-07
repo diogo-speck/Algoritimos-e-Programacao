@@ -28,14 +28,16 @@ int main(){
         cin.ignore();
         if (escolha == 1){
             cadastrarNome(arquivo);
+            cout << "\nNome cadastrado" << endl;
         }else if (escolha == 2){
+            cout << endl;
             listarNomes(arquivo);
         }else if (escolha != 0){
-            cout << "Escolha inválida" << endl;
+            cout << "\nEscolha inválida" << endl;
         }
     }
     
-    cout << "Saindo..." << endl;
+    cout << "\nSaindo..." << endl;
     arquivo.close();
 
     return 0;

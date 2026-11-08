@@ -1,0 +1,4 @@
+1;Ana Paula Silva;ana@clinica.com;Clinica Geral
+2;Carlos Mendes;carlos@clinica.com;Cirurgia
+3;Mariana Costa;mariana@clinica.com;Dermatologia
+4;Pedro Almeida;pedro@clinica.com;Cardiologia

@@ -1,0 +1,10 @@
+[
+
+    {"codigo": 1, "nome": "mouse", "qtd": 4},
+    {"codigo": 2, "nome": "teclado", "qtd": 7},
+    {"codigo": 3, "nome": "asd", "qtd": 50},
+    {"codigo": 4, "nome": "computador", "qtd": 3},
+    {"codigo": 5, "nome": "memoria", "qtd": 7},
+    {"codigo": 6, "nome": "", "qtd": 9}
+
+]

@@ -1,0 +1,6 @@
+1;mouse;4
+2;teclado;7
+3;asd;50
+4;computador;3
+5;memoria;7
+6;;9

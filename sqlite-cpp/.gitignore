@@ -1,0 +1,14 @@
+# Build
+build/
+cmake-build-*/
+
+# Executáveis
+*.exe
+*.out
+*.o
+*.obj
+
+# Bancos de teste
+databases/*.db
+databases/*.sqlite
+databases/*.sqlite3

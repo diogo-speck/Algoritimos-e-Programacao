@@ -1,3 +1,4 @@
+#include <filesystem>
 #include <iostream>
 #include <sqlite3.h>
 
@@ -5,12 +6,16 @@ int main() {
     sqlite3* db = nullptr;
     sqlite3_stmt* stmt = nullptr;
 
-    // 1. Conectar ao banco
-    int rc = sqlite3_open("meu_banco.db", &db);
+    // 1. Abrir conexão
+    std::filesystem::create_directories("databases");
 
+    int rc = sqlite3_open("databases/meu_banco.db", &db);
+
+    
     if (rc != SQLITE_OK) {
         std::cerr << "Erro ao conectar: "
                   << sqlite3_errmsg(db) << '\n';
+
         sqlite3_close(db);
         return 1;
     }
@@ -33,50 +38,69 @@ int main() {
         return 1;
     }
 
-    // 3. Inserir cliente
+    std::cout << "Tabela criada/verificada!\n";
+
+    // 3. Inserir registro
     const char* inserir =
         "INSERT INTO clientes (nome) VALUES (?);";
 
     rc = sqlite3_prepare_v2(db, inserir, -1, &stmt, nullptr);
 
-    if (rc == SQLITE_OK) {
-        sqlite3_bind_text(stmt, 1, "Novo Cliente",
-                          -1, SQLITE_TRANSIENT);
+    if (rc != SQLITE_OK) {
+        std::cerr << "Erro ao preparar INSERT: "
+                  << sqlite3_errmsg(db) << '\n';
+        sqlite3_close(db);
+        return 1;
+    }
 
-        rc = sqlite3_step(stmt);
+    sqlite3_bind_text(stmt, 1, "Novo Cliente", -1, SQLITE_STATIC);
 
-        if (rc != SQLITE_DONE) {
-            std::cerr << "Erro ao inserir: "
-                      << sqlite3_errmsg(db) << '\n';
-        } else {
-            std::cout << "Cliente inserido!\n";
-        }
+    rc = sqlite3_step(stmt);
+
+    if (rc == SQLITE_DONE) {
+        std::cout << "Cliente inserido! ID: "
+                  << sqlite3_last_insert_rowid(db) << '\n';
+    } else {
+        std::cerr << "Erro ao inserir: "
+                  << sqlite3_errmsg(db) << '\n';
     }
 
     sqlite3_finalize(stmt);
     stmt = nullptr;
 
-    // 4. Consultar clientes
+    // 4. Consultar registros
     const char* consultar =
         "SELECT id, nome FROM clientes;";
 
     rc = sqlite3_prepare_v2(db, consultar, -1, &stmt, nullptr);
 
-    if (rc == SQLITE_OK) {
-        while ((rc = sqlite3_step(stmt)) == SQLITE_ROW) {
-            int id = sqlite3_column_int(stmt, 0);
+    if (rc != SQLITE_OK) {
+        std::cerr << "Erro ao preparar SELECT: "
+                  << sqlite3_errmsg(db) << '\n';
+        sqlite3_close(db);
+        return 1;
+    }
 
-            const unsigned char* nome =
-                sqlite3_column_text(stmt, 1);
+    std::cout << "\nClientes cadastrados:\n";
 
-            std::cout << "ID: " << id
-                      << " | Nome: " << nome << '\n';
-        }
+    while ((rc = sqlite3_step(stmt)) == SQLITE_ROW) {
+        int id = sqlite3_column_int(stmt, 0);
+
+        const unsigned char* nome =
+            sqlite3_column_text(stmt, 1);
+
+        std::cout << "ID: " << id
+                  << " | Nome: " << nome << '\n';
+    }
+
+    if (rc != SQLITE_DONE) {
+        std::cerr << "Erro ao consultar: "
+                  << sqlite3_errmsg(db) << '\n';
     }
 
     sqlite3_finalize(stmt);
 
-    // 5. Encerrar conexão
+    // 5. Fechar conexão
     sqlite3_close(db);
 
     std::cout << "\nConexao encerrada!\n";

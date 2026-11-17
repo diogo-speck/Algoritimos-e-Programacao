@@ -12,3 +12,7 @@ cmake-build-*/
 databases/*.db
 databases/*.sqlite
 databases/*.sqlite3
+
+# Configurações locais de editores
+/.vscode/
+/.idea/

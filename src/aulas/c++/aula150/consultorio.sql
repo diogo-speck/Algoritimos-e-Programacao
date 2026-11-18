@@ -1,6 +1,6 @@
 PRAGMA foreign_keys = ON;
 
---DROP TABLE IF EXISTS medico;
+--DROP TABLE IF EXISTS consulta;
 
 CREATE TABLE IF NOT EXISTS area (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -32,6 +32,8 @@ CREATE TABLE IF NOT EXISTS consulta (
 );
 
 
+
+
 --INSERT INTO area (tipo) VALUES ('Cardiologista'), ('Oftalmologia'), ('Pediatria');
 
 /*
@@ -44,6 +46,39 @@ INSERT INTO medico (area_id, nome, fone) VALUES
 (3, 'Carlos', NULL);
 */
 
+/*
+INSERT INTO paciente (nome, fone) VALUES
+('Marina', '(47) 99999-9995'),
+('Marcos', '(47) 99999-9994'),
+('Maicon', '(47) 99999-9993'),
+('Roberta', '(47) 99999-9992'),
+('Joaquim', '(47) 99999-9991'),
+('Bianca', NULL),
+('Pedro', '');
+*/
+
+/*
+INSERT INTO consulta (medico_id, paciente_id, data_hora_inicio, data_hora_fim) VALUES
+(1, 4, '2026-12-08 10:00:00', '2026-12-08 11:30:00'),
+(1, 5, '2026-12-08 11:30:00', '2026-12-08 12:00:00'),
+(1, 6, '2026-12-08 13:30:00', '2026-12-08 14:30:00'),
+
+(2, 2, '2026-12-08 08:00:00', '2026-12-08 10:00:00'),
+(2, 3, '2026-12-08 10:00:00', '2026-12-08 11:00:00'),
+(2, 1, '2026-12-08 11:00:00', '2026-12-08 12:00:00'),
+
+
+(5, 7, '2026-12-09 08:30:00', '2026-12-09 09:00:00'),
+
+(4, 7, '2026-12-09 09:00:00', '2026-12-09 10:00:00'),
+(4, 5, '2026-12-09 11:00:00', '2026-12-09 12:00:00'),
+(4, 6, '2026-12-09 13:30:00', '2026-12-09 14:30:00'),
+(4, 2, '2026-12-09 14:30:00', '2026-12-09 15:00:00');
+*/
+
+
+
+
 SELECT 
     medico.id, 
     medico.nome, 
@@ -51,6 +86,21 @@ SELECT
     medico.fone 
 FROM medico
 JOIN area ON medico.area_id = area.id;
+
+SELECT * FROM paciente;
+
+SELECT 
+    consulta.id, 
+    medico.nome AS medico, 
+    paciente.nome AS paciente, 
+    consulta.data_hora_inicio, 
+    consulta.data_hora_fim 
+FROM consulta
+JOIN medico ON medico.id = consulta.medico_id
+JOIN paciente ON paciente.id = consulta.paciente_id;
+
+
+
 
 /*
 sqlite3 meu_banco.db

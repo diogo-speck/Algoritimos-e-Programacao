@@ -78,6 +78,14 @@ INSERT INTO consulta (medico_id, paciente_id, data_hora_inicio, data_hora_fim) V
 
 
 
+UPDATE paciente IF EXISTS
+SET fone = '(47) 99845 4454' 
+WHERE id IN (6, 2);
+
+
+DELETE FROM consulta
+WHERE id = 3;
+
 
 SELECT 
     medico.id, 
